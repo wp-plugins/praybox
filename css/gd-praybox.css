@@ -1,0 +1,3 @@
+table.gdadmin {border-collapse: collapse; border-spacing: 0px; width: 100%;}
+table.gdadmin tr.headrow td {padding: 4px 10px; background-color: #CCCCCC; font-size: 13px; font-weight: bold; border-spacing: 0px;}
+table.gdadmin tr.datarow td {padding: 4px 10px; font-size: 12px; vertical-align: top; border-bottom: 1px dotted #CCCCCC;}
