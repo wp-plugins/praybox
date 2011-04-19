@@ -1,3 +1,7 @@
 table.gdadmin {border-collapse: collapse; border-spacing: 0px; width: 100%;}
 table.gdadmin tr.headrow td {padding: 4px 10px; background-color: #CCCCCC; font-size: 13px; font-weight: bold; border-spacing: 0px;}
 table.gdadmin tr.datarow td {padding: 4px 10px; font-size: 12px; vertical-align: top; border-bottom: 1px dotted #CCCCCC;}
+
+div.wrap div.donateform {width: 100%; background-color: #e6e6e6; border: 1px solid #CCCCCC;}
+div.wrap div.donateform p {padding: 0px 10px;}
+div.wrap div.donateform form {width: 120px; float: right;}

@@ -26,6 +26,18 @@ function display_pb_forms($atts) {
 			return "yes";
 		}
 	}
+	function prePgphOutput($input){
+		$reporder=array("\\r\\n","\\n","\\r");
+		$badwords=array("fuck","shit","cunt","penis","bastard");
+
+		$step1=str_replace($reporder,"||",$input);
+		$step2=str_replace($badwords,"[omitted]",$step1);
+		$step3=stripslashes($step2);
+		$output=str_replace("||","\r\n",$step3);
+
+		return $output;
+	}
+
 
 if($_POST['action']=="update_request"){
 
@@ -151,7 +163,7 @@ return $sub_form_output;
 		if($prayer_request->anon==1){$anon="checked";}else{$anon="";}
 		$email=stripslashes($prayer_request->email);
 		$title=stripslashes($prayer_request->title);
-		$body=stripslashes($prayer_request->body);
+		$body=prePgphOutput($prayer_request->body);
 		if($prayer_request->notify==1){$notify="checked";}else{$notify="";}
 		
 		$mgmt_form_output="<div id='praybox'>";

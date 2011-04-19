@@ -20,6 +20,17 @@ function display_pb_requests($atts) {
 			return "fail";
 		}
 	}
+	function prePgphOutput($input){
+		$reporder=array("\\r\\n","\\n","\\r");
+		$badwords=array("fuck","shit","cunt","penis","bastard");
+
+		$step1=str_replace($reporder,"||",$input);
+		$step2=str_replace($badwords,"[omitted]",$step1);
+		$step3=stripslashes($step2);
+		$output=str_replace("||","<br />",$step3);
+
+		return $output;
+	}
 
 if($_POST['action']=="view_details"){
 
@@ -29,8 +40,8 @@ if($_POST['action']=="view_details"){
 	$first_name=stripslashes($prayer_request->first_name);
 	$last_name=stripslashes($prayer_request->last_name);
 	$anon=$prayer_request->anon;
-	$title=stripslashes($prayer_request->title);
-	$body=stripslashes($prayer_request->body);
+	if($prayer_request->title!=""){$title=stripslashes($prayer_request->title);}else{$title="<em>Untitled</em>";}
+	$body=prePgphOutput($prayer_request->body);
 	if($anon!=1){$display_name=$first_name." ".$last_name;}else{$display_name="<em>Anonymous</em>";}
 	
 	$view_details_output="<div id='praybox'>";
@@ -101,6 +112,7 @@ return $view_details_output;
 	foreach($active_requests as $a_req){
 		$req_id=$a_req->id;
 		$title=stripslashes($a_req->title);
+		if($a_req->title!=""){$title=stripslashes($a_req->title);}else{$title="<em>Untitled</em>";}
 		$body=stripslashes($a_req->body);
 		$submitted=date("F j, Y",$a_req->submitted);
 		$num_prayers=howManyPrayers($req_id);

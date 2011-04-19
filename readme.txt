@@ -3,8 +3,8 @@ Contributors: guilddev
 Donate link: http://www.guilddev.com/
 Tags: paypal, business listings, business directory, advertising, advertisers, paid
 Requires at least: 3.0
-Tested up to: 3.1
-Stable tag: 0.1
+Tested up to: 3.1.1
+Stable tag: 0.2
 
 Prayer request application that allows users to submit requests, or pray for existing requests
 
@@ -39,3 +39,8 @@ For this and other wordpress plugins:
 
 = April 7, 2011 - 0.1 =
 * Plugin base.
+
+= April 18, 2011 - 0.2 =
+* fixed line breaks so that they work properly in the body of prayer requests.
+* added language filter (just in case)
+* when someone doesn't enter a title, the title is displayed as 'Untitled'
