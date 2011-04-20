@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: PrayBox - Complete Prayer Request Plugin
+Plugin Name: PrayBox
 Plugin URI: http://www.guilddev.com/wordpress-plugins/
 Description: This is a plugin that facilitates intercessory prayer by allowing visitors to post prayer requests and/or respond to prayer requests that have been posted by clicking on a button indicating that the prayer request has been prayed for. At the end of each day, visitors who have submitted prayer requests receive an email that tells them how many times they have been prayed for that day.
-Version: 0.2
+Version: 0.3
 Author: Guild Development, LLC
 Author URI: http://www.guilddev.com
 */
@@ -25,10 +25,10 @@ Author URI: http://www.guilddev.com
 */
 
 function pb_includeAdminCSS() {
-	echo '<link type="text/css" rel="stylesheet" href="/wp-content/plugins/praybox/css/gd-praybox.css" />' . "\n";
+	echo '<link type="text/css" rel="stylesheet" href="'.plugins_url().'/praybox/css/gd-praybox.css" />' . "\n";
 }
 function pb_includePublicCSS() {
-	echo '<link type="text/css" rel="stylesheet" href="/wp-content/plugins/praybox/css/gd-praybox-sc.css" />' . "\n";
+	echo '<link type="text/css" rel="stylesheet" href="'.plugins_url().'/praybox/css/gd-praybox-sc.css" />' . "\n";
 }
 add_action('admin_head','pb_includeAdminCSS');
 add_action('wp_head','pb_includePublicCSS');

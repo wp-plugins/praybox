@@ -4,7 +4,7 @@ Donate link: http://www.guilddev.com/
 Tags: paypal, business listings, business directory, advertising, advertisers, paid
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 0.2
+Stable tag: 0.3
 
 Prayer request application that allows users to submit requests, or pray for existing requests
 
@@ -19,6 +19,9 @@ For requests or support, please contact us:
 
 For this and other wordpress plugins:
 * <a href="http://www.guilddev.com/wordpress-plugins" title="Guild Dev Plugins">Wordpress Plugins Page</a>
+
+For information about PrayBox:
+* <a href="http://www.praybox.com" title="PrayBox Intercessory Prayer Network">PrayBox.com</a>
 
 == Installation ==
 
@@ -44,3 +47,6 @@ For this and other wordpress plugins:
 * fixed line breaks so that they work properly in the body of prayer requests.
 * added language filter (just in case)
 * when someone doesn't enter a title, the title is displayed as 'Untitled'
+
+= April 18, 2011 - 0.3 =
+* changed paths to plugin assets so that they play nice with BlueHost and other hosts that use '/wordpress' as the base for WP files in their installers

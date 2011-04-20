@@ -98,7 +98,7 @@ function rand_chars() {
 	if(isIPBanned($ip_address)=="pass"){
 		$wpdb->insert('wp_pb_requests',array('first_name'=>$first_name,'last_name'=>$last_name,'anon'=>$anon,'email'=>$email,'authcode'=>$authcode,'submitted'=>$time_now,'title'=>$title,'body'=>$body,'notify'=>$notify,'ip_address'=>$ip_address,'active'=>1));
 		
-		$management_url=site_url()."/?page_id=".get_option('pb_management_page')."&pbid=$authcode";
+		$management_url=home_url()."/?page_id=".get_option('pb_management_page')."&pbid=$authcode";
 		
 	   	$email_from=get_option('pb_reply_to_email');
 	   	$email_subject="Prayer Request Posted";
