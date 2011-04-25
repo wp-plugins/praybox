@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: guilddev
 Donate link: http://www.guilddev.com/
-Tags: paypal, business listings, business directory, advertising, advertisers, paid
+Tags: church, pray, prayer, religion, ministry
 Requires at least: 3.0
 Tested up to: 3.1
 Stable tag: 0.3
@@ -14,14 +14,12 @@ Prayer request application that allows users to submit requests, or pray for exi
 
 Every time a request is prayed for, and the user clicks the "I Prayed For You" button, the requester will recieve a nightly email detailing how many prayers they received that day.
 
-For requests or support, please contact us:
-* <a href="http://www.guilddev.com/contact-us" title="Contact Guild Development">Guild Development Contact Page</a>
+= Live Praybox =
+View our working version of Praybox, post a prayer request or pray for others here: [Praybox - Online Prayer Requests] (http://www.praybox.com/)
 
-For this and other wordpress plugins:
-* <a href="http://www.guilddev.com/wordpress-plugins" title="Guild Dev Plugins">Wordpress Plugins Page</a>
+= Support and Requests =
 
-For information about PrayBox:
-* <a href="http://www.praybox.com" title="PrayBox Intercessory Prayer Network">PrayBox.com</a>
+* [Suppor Forum] (http://wordpress-plugins.guilddev.com/forum/praybox-online-prayer-request-plugin/)
 
 == Installation ==
 
