@@ -15,11 +15,11 @@ Prayer request application that allows users to submit requests, or pray for exi
 Every time a request is prayed for, and the user clicks the "I Prayed For You" button, the requester will recieve a nightly email detailing how many prayers they received that day.
 
 = Live Praybox =
-View our working version of Praybox, post a prayer request or pray for others here: [Praybox - Online Prayer Requests] (http://www.praybox.com/)
+View our working version of Praybox, post a prayer request or pray for others here: [Praybox - Online Prayer Requests](http://www.praybox.com/)
 
 = Support and Requests =
 
-* [Suppor Forum] (http://wordpress-plugins.guilddev.com/forum/praybox-online-prayer-request-plugin/)
+* [Suppor Forum](http://wordpress-plugins.guilddev.com/forum/praybox-online-prayer-request-plugin/)
 
 == Installation ==
 
