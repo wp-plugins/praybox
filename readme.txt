@@ -21,6 +21,7 @@ View our working version of Praybox, post a prayer request or pray for others he
 = Help Develop Praybox =
 
 Help us continue to develop Praybox and similar apps with a small donation:
+
 * [$5 Donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=D5G57JLHSVVQW)
 * [$10 Donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3GKFL94FTHMFA)
 * [$20 Donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WWUVEUN7WV45Q)
