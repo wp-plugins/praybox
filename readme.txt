@@ -17,9 +17,15 @@ Every time a request is prayed for, and the user clicks the "I Prayed For You" b
 = Live Praybox =
 View our working version of Praybox, post a prayer request or pray for others here: [Praybox - Online Prayer Requests](http://www.praybox.com/)
 
+= Keep Praybox going =
+Help us continue to develop Praybox and similar apps with a small donation:
+* [$5 Donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=D5G57JLHSVVQW)
+* [$10 Donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3GKFL94FTHMFA)
+* [$20 Donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WWUVEUN7WV45Q)
+
 = Support and Requests =
 
-* [Suppor Forum](http://wordpress-plugins.guilddev.com/forum/praybox-online-prayer-request-plugin/)
+We respond to all support requests at our forum: [Support Forum](http://wordpress-plugins.guilddev.com/forum/praybox-online-prayer-request-plugin/)
 
 == Installation ==
 
