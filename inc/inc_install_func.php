@@ -32,7 +32,7 @@ function gd_pb_db_install() {
 	);";
 
       	$wpdb->query($sql); 
-		$wpdb->insert('wp_pb_requests',array('first_name'=>'John','last_name'=>'Doe','anon'=>1,'email'=>'test@test.com','authcode'=>'000000','submitted'=>$date_now,'closed'=>1,'title'=>'Please Pray For Me','body'=>'Please pray for me.','notify'=>0,'ip_address'=>'0.0.0.0','active'=>1));
+		$wpdb->insert($wpdb->prefix.'pb_requests',array('first_name'=>'John','last_name'=>'Doe','anon'=>1,'email'=>'test@test.com','authcode'=>'000000','submitted'=>$date_now,'closed'=>1,'title'=>'Please Pray For Me','body'=>'Please pray for me.','notify'=>0,'ip_address'=>'0.0.0.0','active'=>1));
    }
 
    $table_name = $wpdb->prefix."pb_prayedfor";
@@ -47,7 +47,7 @@ function gd_pb_db_install() {
 	);";
 
       	$wpdb->query($sql);
-      	$wpdb->insert('wp_pb_prayedfor',array('request_id'=>1,'prayedfor_date'=>$date_now,'ip_address'=>'0.0.0.0'));
+      	$wpdb->insert($wpdb->prefix.'pb_prayedfor',array('request_id'=>1,'prayedfor_date'=>$date_now,'ip_address'=>'0.0.0.0'));
    }
 
    $table_name = $wpdb->prefix."pb_flags";
@@ -62,7 +62,7 @@ function gd_pb_db_install() {
 	);";
 
       	$wpdb->query($sql);
-      	$wpdb->insert('wp_pb_flags',array('request_id'=>1,'ip_address'=>'0.0.0.0','date'=>$date_now));
+      	$wpdb->insert($wpdb->prefix.'pb_flags',array('request_id'=>1,'ip_address'=>'0.0.0.0','date'=>$date_now));
    }
 
    $table_name = $wpdb->prefix."pb_banned_ips";
@@ -77,7 +77,7 @@ function gd_pb_db_install() {
 	);";
 
 		$wpdb->query($sql);
-		$wpdb->insert('wp_pb_banned_ips',array('ip_address'=>'0.0.0.0','date'=>$date_now,'reason'=>'an example of a banned ip listing'));
+		$wpdb->insert($wpdb->prefix.'pb_banned_ips',array('ip_address'=>'0.0.0.0','date'=>$date_now,'reason'=>'an example of a banned ip listing'));
  
       add_option("gd_pb_db_version",$gd_pb_db_version);
    }

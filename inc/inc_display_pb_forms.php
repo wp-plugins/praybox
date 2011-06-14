@@ -3,13 +3,13 @@ function display_pb_forms($atts) {
 	global $wpdb;
 	function howManyPrayers($req_id){
 		global $wpdb;
-		$flags=$wpdb->get_results("SELECT id FROM wp_pb_prayedfor WHERE request_id='$req_id'");
+		$flags=$wpdb->get_results("SELECT id FROM ".$wpdb->prefix."pb_prayedfor WHERE request_id='$req_id'");
 		return $wpdb->num_rows;
 	}
 
 	function isIPBanned($ip){
 		global $wpdb;
-		$wpdb->get_results("SELECT id FROM wp_pb_banned_ips WHERE ip_address='$ip'");
+		$wpdb->get_results("SELECT id FROM ".$wpdb->prefix."pb_banned_ips WHERE ip_address='$ip'");
 		if($wpdb->num_rows==0){
 			return "pass";
 		}else{
@@ -19,7 +19,7 @@ function display_pb_forms($atts) {
 
 	function isRequestActive($authcode){
 		global $wpdb;
-		$wpdb->get_results("SELECT id FROM wp_pb_requests WHERE authcode='$authcode' AND active='1'");
+		$wpdb->get_results("SELECT id FROM ".$wpdb->prefix."pb_requests WHERE authcode='$authcode' AND active='1'");
 		if($wpdb->num_rows==0){
 			return "no";
 		}else{
@@ -60,7 +60,7 @@ if($_POST['action']=="update_request"){
 		$closed_comment="";
 	}
 
-	$wpdb->update('wp_pb_requests',array('first_name'=>$first_name,'last_name'=>$last_name,'anon'=>$anon,'email'=>$email,'closed'=>$closed,'closed_comment'=>$closed_comment,'title'=>$title,'body'=>$body,'notify'=>$notify,'active'=>$active),array('id'=>$req_id));
+	$wpdb->update($wpdb->prefix.'pb_requests',array('first_name'=>$first_name,'last_name'=>$last_name,'anon'=>$anon,'email'=>$email,'closed'=>$closed,'closed_comment'=>$closed_comment,'title'=>$title,'body'=>$body,'notify'=>$notify,'active'=>$active),array('id'=>$req_id));
 	
 	if($active==1){
 		$updated_request_output="<div id='praybox'>";
@@ -96,7 +96,7 @@ function rand_chars() {
 	$time_now=time();
 	
 	if(isIPBanned($ip_address)=="pass"){
-		$wpdb->insert('wp_pb_requests',array('first_name'=>$first_name,'last_name'=>$last_name,'anon'=>$anon,'email'=>$email,'authcode'=>$authcode,'submitted'=>$time_now,'title'=>$title,'body'=>$body,'notify'=>$notify,'ip_address'=>$ip_address,'active'=>1));
+		$wpdb->insert($wpdb->prefix.'pb_requests',array('first_name'=>$first_name,'last_name'=>$last_name,'anon'=>$anon,'email'=>$email,'authcode'=>$authcode,'submitted'=>$time_now,'title'=>$title,'body'=>$body,'notify'=>$notify,'ip_address'=>$ip_address,'active'=>1));
 		
 		$management_url=home_url()."/?page_id=".get_option('pb_management_page')."&pbid=$authcode";
 		
@@ -156,7 +156,7 @@ return $sub_form_output;
 	
 	if (isRequestActive($authcode)=="yes"){
 		//IF REQUEST IS OPEN
-		$prayer_request=$wpdb->get_row("SELECT id,first_name,last_name,anon,email,title,body,notify FROM wp_pb_requests WHERE authcode='$authcode'");
+		$prayer_request=$wpdb->get_row("SELECT id,first_name,last_name,anon,email,title,body,notify FROM ".$wpdb->prefix."pb_requests WHERE authcode='$authcode'");
 		$req_id=$prayer_request->id;
 		$first_name=stripslashes($prayer_request->first_name);
 		$last_name=stripslashes($prayer_request->last_name);

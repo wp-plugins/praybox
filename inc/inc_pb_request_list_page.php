@@ -4,12 +4,12 @@ function pb_request_list_page() {
 global $wpdb;
 	function howManyFlags($req_id){
 		global $wpdb;
-		$flags=$wpdb->get_results("SELECT id FROM wp_pb_flags WHERE request_id='$req_id'");
+		$flags=$wpdb->get_results("SELECT id FROM ".$wpdb->prefix."pb_flags WHERE request_id='$req_id'");
 		return $wpdb->num_rows;
 	}
 	function howManyPrayers($req_id){
 		global $wpdb;
-		$flags=$wpdb->get_results("SELECT id FROM wp_pb_prayedfor WHERE request_id='$req_id'");
+		$flags=$wpdb->get_results("SELECT id FROM ".$wpdb->prefix."pb_prayedfor WHERE request_id='$req_id'");
 		return $wpdb->num_rows;
 	}
 
@@ -20,8 +20,8 @@ global $wpdb;
 <?php
 if($_POST['action']=="remove_request"){
 	$req_id=$_POST['pb_request_id'];
-	$wpdb->query("DELETE FROM wp_pb_requests WHERE id='$req_id'");
-	$wpdb->query("DELETE FROM wp_pb_flags WHERE request_id='$req_id'");
+	$wpdb->query("DELETE FROM ".$wpdb->prefix."pb_requests WHERE id='$req_id'");
+	$wpdb->query("DELETE FROM ".$wpdb->prefix."pb_flags WHERE request_id='$req_id'");
 ?>
 <p><strong><?php _e('Request Removed.','menu-test'); ?></strong></p>
 <?php } ?>
@@ -30,7 +30,7 @@ if($_POST['action']=="remove_request"){
 if($_POST['action']=="close_request"){
 	$req_id=$_POST['pb_request_id'];
 	$time_now=time();
-	$wpdb->update('wp_pb_requests',array('closed'=>$time_now,'closed_comment'=>'closed by administrator.','active'=>0),array('id'=>$req_id));
+	$wpdb->update($wpdb->prefix.'pb_requests',array('closed'=>$time_now,'closed_comment'=>'closed by administrator.','active'=>0),array('id'=>$req_id));
 ?>
 <p><strong><?php _e('Request Closed.','menu-test'); ?></strong></p>
 <?php } ?>
@@ -38,7 +38,7 @@ if($_POST['action']=="close_request"){
 <?php
 if($_POST['action']=="reopen_request"){
 	$req_id=$_POST['pb_request_id'];
-	$wpdb->update('wp_pb_requests',array('closed'=>0,'closed_comment'=>'','active'=>1),array('id'=>$req_id));
+	$wpdb->update($wpdb->prefix.'pb_requests',array('closed'=>0,'closed_comment'=>'','active'=>1),array('id'=>$req_id));
 ?>
 <p><strong><?php _e('Request Reopened.','menu-test'); ?></strong></p>
 <?php } ?>
@@ -49,7 +49,7 @@ if($_POST['action']=="reopen_request"){
 <tr class="headrow"><td>ID</td><td>First/Last/Email</td><td width="250">Prayer Request</td><td>IP</td><td>Posted</td><td># Prayers</td><td>&nbsp;</td></tr>
 
 <?php
-$active_requests=$wpdb->get_results("SELECT id,first_name,last_name,email,title,body,ip_address,submitted FROM wp_pb_requests WHERE active='1' ORDER BY submitted DESC");
+$active_requests=$wpdb->get_results("SELECT id,first_name,last_name,email,title,body,ip_address,submitted FROM ".$wpdb->prefix."pb_requests WHERE active='1' ORDER BY submitted DESC");
 
 foreach($active_requests as $a_req){
 	$req_id=$a_req->id;
@@ -78,7 +78,7 @@ foreach($active_requests as $a_req){
 <tr class="headrow"><td>ID</td><td>First/Last/Email</td><td width="300">Prayer Request</td><td>IP/Posted/Closed</td><td width="300">Closing Comment</td><td># Prayers</td><td>&nbsp;</td></tr>
 
 <?php
-$closed_requests=$wpdb->get_results("SELECT id,first_name,last_name,email,title,body,ip_address,submitted,closed,closed_comment FROM wp_pb_requests WHERE active='0' ORDER BY submitted DESC");
+$closed_requests=$wpdb->get_results("SELECT id,first_name,last_name,email,title,body,ip_address,submitted,closed,closed_comment FROM ".$wpdb->prefix."pb_requests WHERE active='0' ORDER BY submitted DESC");
 
 foreach($closed_requests as $c_req){
 	$req_id=$c_req->id;

@@ -3,17 +3,17 @@ function display_pb_requests($atts) {
 	global $wpdb;
 	function howManyFlags($req_id){
 		global $wpdb;
-		$flags=$wpdb->get_results("SELECT id FROM wp_pb_flags WHERE request_id='$req_id'");
+		$flags=$wpdb->get_results("SELECT id FROM ".$wpdb->prefix."pb_flags WHERE request_id='$req_id'");
 		return $wpdb->num_rows;
 	}
 	function howManyPrayers($req_id){
 		global $wpdb;
-		$flags=$wpdb->get_results("SELECT id FROM wp_pb_prayedfor WHERE request_id='$req_id'");
+		$flags=$wpdb->get_results("SELECT id FROM ".$wpdb->prefix."pb_prayedfor WHERE request_id='$req_id'");
 		return $wpdb->num_rows;
 	}
 	function isIPBanned($ip){
 		global $wpdb;
-		$wpdb->get_results("SELECT id FROM wp_pb_banned_ips WHERE ip_address='$ip'");
+		$wpdb->get_results("SELECT id FROM ".$wpdb->prefix."pb_banned_ips WHERE ip_address='$ip'");
 		if($wpdb->num_rows==0){
 			return "pass";
 		}else{
@@ -36,7 +36,7 @@ if($_POST['action']=="view_details"){
 
 //VIEW DETAILS OUTPUT
 	$req_id=$_POST['pb_request_id'];
-	$prayer_request=$wpdb->get_row("SELECT first_name,last_name,anon,title,body FROM wp_pb_requests WHERE id='$req_id'");
+	$prayer_request=$wpdb->get_row("SELECT first_name,last_name,anon,title,body FROM ".$wpdb->prefix."pb_requests WHERE id='$req_id'");
 	$first_name=stripslashes($prayer_request->first_name);
 	$last_name=stripslashes($prayer_request->last_name);
 	$anon=$prayer_request->anon;
@@ -48,7 +48,7 @@ if($_POST['action']=="view_details"){
 	$view_details_output.="<div class='title'>$title<div style='clear:both;'></div></div>";
 	$view_details_output.="<table class='details'>";
 	$view_details_output.="<tr><td class='label'>Submitted By:</td><td class='content'>$display_name";
-	$view_details_output.="<form class='flag' method='post'><input type='hidden' name='action' value='flag_this_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' value='Report This' /></form>";
+	$view_details_output.="<form class='flag' method='post'><input type='hidden' name='action' value='flag_this_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' value='Report Abuse' /></form>";
 	$view_details_output.="</td></tr>";
 	$view_details_output.="<tr><td class='label'>Prayer Request:</td><td class='content'>$body</td></tr>";
 	$view_details_output.="<tr><td class='response' colspan='2'>";
@@ -66,7 +66,7 @@ return $view_details_output;
 	$req_id=$_POST['pb_request_id'];
 	$time_now=time();
 	$ip_address=$_SERVER['REMOTE_ADDR'];
-	$wpdb->insert('wp_pb_flags',array('request_id'=>$req_id,'flagged_date'=>$time_now,'ip_address'=>$ip_address));
+	$wpdb->insert($wpdb->prefix.'pb_flags',array('request_id'=>$req_id,'flagged_date'=>$time_now,'ip_address'=>$ip_address));
 
 	if(isIPBanned($ip_address)=="pass"){
 		$flag_action_output="<div id='praybox'>";
@@ -88,7 +88,7 @@ return $flag_action_output;
 	$req_id=$_POST['pb_request_id'];
 	$time_now=time();
 	$ip_address=$_SERVER['REMOTE_ADDR'];
-	$wpdb->insert('wp_pb_prayedfor',array('request_id'=>$req_id,'prayedfor_date'=>$time_now,'ip_address'=>$ip_address));
+	$wpdb->insert($wpdb->prefix.'pb_prayedfor',array('request_id'=>$req_id,'prayedfor_date'=>$time_now,'ip_address'=>$ip_address));
 		
 	$view_details_output="<div id='praybox'>";
 	$view_details_output.="<div class='thankyou'>Thank you for lifting up this request in prayer.<div style='clear:both;'></div></div>";
@@ -107,7 +107,7 @@ return $view_details_output;
 	$req_list_output.="<table class='praybox'>";
 	$req_list_output.="<tr class='pb-titlerow'><td>Request Title</td><td># Prayers</td><td>Submitted On</td><td>&nbsp;</td>";
 	
-	$active_requests=$wpdb->get_results("SELECT id,title,body,submitted FROM wp_pb_requests WHERE active='1' ORDER BY submitted DESC");
+	$active_requests=$wpdb->get_results("SELECT id,title,body,submitted FROM ".$wpdb->prefix."pb_requests WHERE active='1' ORDER BY submitted DESC");
 	
 	foreach($active_requests as $a_req){
 		$req_id=$a_req->id;

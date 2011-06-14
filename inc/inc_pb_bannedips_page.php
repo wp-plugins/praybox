@@ -9,7 +9,7 @@ global $wpdb;
 <?php
 if($_POST['action']=="unban_ip"){
 	$id=$_POST['banned_id'];
-	$wpdb->query("DELETE FROM wp_pb_banned_ips WHERE id='$id'");
+	$wpdb->query("DELETE FROM ".$wpdb->prefix."pb_banned_ips WHERE id='$id'");
 ?>
 <p><strong><?php _e('IP Address Unbanned.','menu-test'); ?></strong></p>
 <?php } ?>
@@ -18,7 +18,7 @@ if($_POST['action']=="unban_ip"){
 <tr class="headrow"><td>ID</td><td>IP Address</td><td>Date Banned</td><td>Reason</td><td>&nbsp;</td></tr>
 
 <?php
-$bannedips=$wpdb->get_results("SELECT id,ip_address,banned_date,reason FROM wp_pb_banned_ips ORDER BY banned_date DESC");
+$bannedips=$wpdb->get_results("SELECT id,ip_address,banned_date,reason FROM ".$wpdb->prefix."pb_banned_ips ORDER BY banned_date DESC");
 
 foreach($bannedips as $bip){
 	$id=$bip->id;

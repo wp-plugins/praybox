@@ -4,7 +4,7 @@ Donate link: http://www.guilddev.com/
 Tags: church, pray, prayer, religion, ministry
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 0.3
+Stable tag: 0.4
 
 Prayer request application that allows users to submit requests, or pray for existing requests
 
@@ -57,3 +57,7 @@ We respond to all support requests at our forum: [Support Forum](http://wordpres
 
 = April 18, 2011 - 0.3 =
 * changed paths to plugin assets so that they play nice with BlueHost and other hosts that use '/wordpress' as the base for WP files in their installers
+
+= June 14, 2011 - 0.4 =
+* Change text "Report This" to "Report Abuse" to be more clear
+* Fixed bug where people not using the extention "wp_" in their DB were not able to post, and were banned from posting

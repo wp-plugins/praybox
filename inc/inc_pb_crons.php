@@ -11,11 +11,11 @@ function do_gap_check() {
 
 	if($gap!=0){
 		
-	$prayedfor_results=$wpdb->get_results("SELECT request_id FROM wp_pb_prayedfor GROUP BY request_id");
+	$prayedfor_results=$wpdb->get_results("SELECT request_id FROM ".$wpdb->prefix."pb_prayedfor GROUP BY request_id");
 	foreach($prayedfor_results as $prayedfor_result){
 		$prayedfor_ids[]=$prayedfor_result->request_id;
 	}
-	$requests_results=$wpdb->get_results("SELECT id FROM wp_pb_requests WHERE active='1'");
+	$requests_results=$wpdb->get_results("SELECT id FROM ".$wpdb->prefix."pb_requests WHERE active='1'");
 	foreach($requests_results as $requests_result){
 		$request_ids[]=$requests_result->id;
 	}
@@ -24,7 +24,7 @@ function do_gap_check() {
 	$gap_time=strtotime("- ".$gap." hours");
 	
 	foreach($unprayed_ids as $upid){
-		$unprayed_details=$wpdb->get_row("SELECT title,submitted FROM wp_pb_requests WHERE id='$upid'");
+		$unprayed_details=$wpdb->get_row("SELECT title,submitted FROM ".$wpdb->prefix."pb_requests WHERE id='$upid'");
 		$title=stripslashes($unprayed_details->title);
 		$submitted=$unprayed_details->submitted;
 		if($submitted<$gap_time){
@@ -48,14 +48,14 @@ function send_daily_emails() {
 		
 	$onedayago=strtotime("-1 day");
 	
-	$daily_prayers=$wpdb->get_results("SELECT request_id FROM wp_pb_prayedfor WHERE date>'$onedayago' GROUP BY request_id");
+	$daily_prayers=$wpdb->get_results("SELECT request_id FROM ".$wpdb->prefix."pb_prayedfor WHERE date>'$onedayago' GROUP BY request_id");
 	
 	foreach($daily_prayers as $prayer){
 		$request_id=$prayer->request_id;
 		
-		$num_prayers=$wpdb->get_var($wpdb->prepare("SELECT COUNT(id) FROM wp_pb_prayedfor WHERE prayedfor_date>'$onedayago' AND request_id='$request_id';"));
+		$num_prayers=$wpdb->get_var($wpdb->prepare("SELECT COUNT(id) FROM ".$wpdb->prefix."pb_prayedfor WHERE prayedfor_date>'$onedayago' AND request_id='$request_id';"));
 	
-		$prayer_request=$wpdb->get_row("SELECT first_name,last_name,email,title,notify,authcode FROM wp_pb_requests WHERE id='$request_id'");
+		$prayer_request=$wpdb->get_row("SELECT first_name,last_name,email,title,notify,authcode FROM ".$wpdb->prefix."pb_requests WHERE id='$request_id'");
 		
 		$first_name=$prayer_request->first_name;
 		$last_name=$prayer_request->last_name;

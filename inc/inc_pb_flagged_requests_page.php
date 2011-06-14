@@ -3,7 +3,7 @@ function pb_flagged_requests_page() {
 global $wpdb;
 	function howManyFlags($req_id){
 		global $wpdb;
-		$flags=$wpdb->get_results("SELECT id FROM wp_pb_flags WHERE request_id='$req_id'");
+		$flags=$wpdb->get_results("SELECT id FROM ".$wpdb->prefix."pb_flags WHERE request_id='$req_id'");
 		return $wpdb->num_rows;
 	}
 ?>
@@ -14,8 +14,8 @@ global $wpdb;
 <?php
 if($_POST['action']=="remove_request"){
 	$req_id=$_POST['pb_request_id'];
-	$wpdb->query("DELETE FROM wp_pb_requests WHERE id='$req_id'");
-	$wpdb->query("DELETE FROM wp_pb_flags WHERE request_id='$req_id'");
+	$wpdb->query("DELETE FROM ".$wpdb->prefix."pb_requests WHERE id='$req_id'");
+	$wpdb->query("DELETE FROM ".$wpdb->prefix."pb_flags WHERE request_id='$req_id'");
 ?>
 <p><strong><?php _e('Request Removed.','menu-test'); ?></strong></p>
 <?php } ?>
@@ -23,7 +23,7 @@ if($_POST['action']=="remove_request"){
 <?php
 if($_POST['action']=="clear_flags"){
 	$req_id=$_POST['pb_request_id'];
-	$wpdb->query("DELETE FROM wp_pb_flags WHERE request_id='$req_id'");
+	$wpdb->query("DELETE FROM ".$wpdb->prefix."pb_flags WHERE request_id='$req_id'");
 ?>
 <p><strong><?php _e('Flags Cleared.','menu-test'); ?></strong></p>
 <?php } ?>
@@ -33,9 +33,9 @@ if($_POST['action']=="remove_ban"){
 	$req_id=$_POST['pb_request_id'];
 	$ip=$_POST['pb_ip_address'];
 	$time_now=time();
-	$wpdb->query("DELETE FROM wp_pb_requests WHERE id='$req_id'");
-	$wpdb->query("DELETE FROM wp_pb_flags WHERE request_id='$req_id'");
-	$wpdb->insert('wp_pb_banned_ips',array('ip_address'=>$ip,'banned_date'=>$time_now,'reason'=>'request flagged as inappropriate'))
+	$wpdb->query("DELETE FROM ".$wpdb->prefix."pb_requests WHERE id='$req_id'");
+	$wpdb->query("DELETE FROM ".$wpdb->prefix."pb_flags WHERE request_id='$req_id'");
+	$wpdb->insert($wpdb->prefix.'pb_banned_ips',array('ip_address'=>$ip,'banned_date'=>$time_now,'reason'=>'request flagged as inappropriate'))
 ?>
 <p><strong><?php _e('Request Removed and IP Address Banned.','menu-test'); ?></strong></p>
 <?php } ?>
@@ -44,13 +44,13 @@ if($_POST['action']=="remove_ban"){
 <tr class="headrow"><td>ID</td><td>First/Last/Email</td><td>Title</td><td width="300">Body</td><td>IP Address</td><td>Date Posted</td><td># Times Flagged</td><td>&nbsp;</td></tr>
 
 <?php
-$flags=$wpdb->get_results("SELECT request_id FROM wp_pb_flags GROUP BY request_id");
+$flags=$wpdb->get_results("SELECT request_id FROM ".$wpdb->prefix."pb_flags GROUP BY request_id");
 
 foreach($flags as $flag){
 	$req_id=$flag->request_id;
 	$num_flags=howManyFlags($req_id);
 	
-	$request=$wpdb->get_row("SELECT first_name,last_name,email,title,body,ip_address,submitted FROM wp_pb_requests WHERE id='$req_id'");
+	$request=$wpdb->get_row("SELECT first_name,last_name,email,title,body,ip_address,submitted FROM ".$wpdb->prefix."pb_requests WHERE id='$req_id'");
 	
 	$first_name=$request->first_name;
 	$last_name=$request->last_name;
