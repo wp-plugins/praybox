@@ -18,7 +18,7 @@ Every time a request is prayed for, and the user clicks the "I Prayed For You" b
 
 = Live Praybox =
 
-Video on how to use the Praybox frontend: [Praybox for Wordpress Youtube Video] (http://www.youtube.com/watch?v=vcRpZZ8lS98)
+Video on how to use the Praybox frontend: [Praybox for Wordpress Youtube Video](http://www.youtube.com/watch?v=vcRpZZ8lS98)
 
 View our working version of Praybox, post a prayer request or pray for others here: [Praybox - Online Prayer Requests](http://www.praybox.com/)
 
