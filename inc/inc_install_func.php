@@ -93,4 +93,7 @@ function gd_pb_db_install() {
    //add_option("pb_send_notify_checkbox","0");
    add_option("pb_send_notify_hours","0");
    add_option("pb_send_notify_email","test@email.com");
+   add_option("pb_admin_moderation","0");
+   add_option("pb_timeframe_display","0");
+   add_option("pb_page_display","0");
 }

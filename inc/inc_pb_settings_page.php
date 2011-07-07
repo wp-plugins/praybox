@@ -1,6 +1,6 @@
 <?php
-
 function pb_settings_page() {
+if(get_option('pb_admin_moderation')==""){$needupdate=1;}
 ?>
 
 <div class="wrap">
@@ -16,8 +16,33 @@ function pb_settings_page() {
 	}
 ?>
 <p><strong><?php _e('settings saved.','menu-test'); ?></strong></p>
-<?php } ?>
+<?php } 
 
+ if($_POST['action']=="praybox_update"){
+	updateOptionsAlpha();
+?>
+<p><strong><?php _e('PrayBox Plugin Options Updated. <a href="?page=pb_settings">Click here to reload the PrayBox interface.</a>','menu-test'); ?></strong></p>
+<?php } else { 
+
+if($needupdate==1){ ?>
+<form method="post" class="update">
+<input type="hidden" name="action" value="praybox_update" />
+<p>Your PrayBox plugin has been updated and there are a few housekeeping things that need to be performed.</p>
+<input type="submit" value="Update PrayBox Options" />
+</form>
+
+<?php }
+
+$contributors = file_get_contents('http://www.praybox.com/contributors_list.php');
+
+$domain=$_SERVER['HTTP_HOST'];
+$iswww=strpos($domain,"www.");
+if($iswww!==false){$domain=str_replace("www.","",$domain);}
+
+$iscontributor=strpos($contributors,$domain);
+
+if($iscontributor===false){
+?>
 
 <div class="donateform">
 	<p>The development of this plugin has been and will continue to be a labor of love. It's one of those projects that we'd like to put more time into than we actually have available, and it really helps out when folks who enjoy using it can donate a little bit to help us keep it going.</p>
@@ -71,7 +96,7 @@ function pb_settings_page() {
 	<img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/scr/pixel.gif" width="1" height="1">
 	</form>
 <div style="clear:both;"></div></div>
-
+<?php } ?>
 <p>Before using this plugin, make sure the correct information is listed in the fields below and paste the following shortcodes into the appropriate pages as indicated below:</p>
 
 <ul style="list-style-type:disc; margin-left: 30px;">
@@ -160,7 +185,39 @@ function pb_settings_page() {
         <th scope="row">Prayer Gap Alert Email</th>
         <td><input type="text" name="pb_send_notify_email" value="<?php echo get_option('pb_send_notify_email'); ?>" size="80" /></td>
         </tr>
-                
+
+<?php if($needupdate!=1){ ?>
+		<tr valign="top">
+        <th scope="row">Admin Moderation of All Requests</th>
+        <td>
+        Turn this option "on" if you want to moderate all requests before they are displayed publicly.<br /><input type="radio" type="checkbox" <?php if(get_option('pb_admin_moderation')=="1"){ ?>checked="checked" <?php } ?> name="pb_admin_moderation" value="1" />on &nbsp; &nbsp; &nbsp; <input type="radio" <?php if(get_option('pb_admin_moderation')=="0"){ ?>checked="checked" <?php } ?> name="pb_admin_moderation" value="0" />off</td>
+        </tr>
+
+		<tr valign="top">
+        <th scope="row">Which Requests Would You Like to Display?</th>
+        <td>
+        <select name="pb_timeframe_display">
+        <option value="0" <?php if(get_option('pb_timeframe_display')=="0"){ ?>selected="selected"<?php } ?>>all of them</option>
+        <option value="30" <?php if(get_option('pb_timeframe_display')=="30"){ ?>selected="selected"<?php } ?>>only the last 30 days</option>
+        <option value="60" <?php if(get_option('pb_timeframe_display')=="60"){ ?>selected="selected"<?php } ?>>only the last 60 days</option>
+        <option value="90" <?php if(get_option('pb_timeframe_display')=="90"){ ?>selected="selected"<?php } ?>>only the last 90 days</option>
+        <option value="120" <?php if(get_option('pb_timeframe_display')=="120"){ ?>selected="selected"<?php } ?>>only the last 120 days</option>
+        </select></td>
+        </tr>
+
+		<tr valign="top">
+        <th scope="row">How Many Request Would You Like to Display Per Page?</th>
+        <td>
+        <select name="pb_page_display">
+        <option value="0" <?php if(get_option('pb_page_display')=="0"){ ?>selected="selected"<?php } ?>>all of them</option>
+        <option value="20" <?php if(get_option('pb_page_display')=="20"){ ?>selected="selected"<?php } ?>>20</option>
+        <option value="40" <?php if(get_option('pb_page_display')=="40"){ ?>selected="selected"<?php } ?>>40</option>
+        <option value="60" <?php if(get_option('pb_page_display')=="60"){ ?>selected="selected"<?php } ?>>60</option>
+        <option value="80" <?php if(get_option('pb_page_display')=="80"){ ?>selected="selected"<?php } ?>>80</option>
+        <option value="100" <?php if(get_option('pb_page_display')=="100"){ ?>selected="selected"<?php } ?>>100</option>
+        </select></td>
+        </tr>
+<?php } ?>                
     </table>
     
     <p class="submit">
@@ -168,5 +225,8 @@ function pb_settings_page() {
     </p>
 
 </form>
+<p align="right">Prayer Gap emails set to run <em><?php echo wp_get_schedule('prayer_gap'); ?></em><br />
+Daily Emails set to run <em><?php echo wp_get_schedule('daily_emails'); ?></em></p>
+
 </div>
-<?php }
+<?php }}
