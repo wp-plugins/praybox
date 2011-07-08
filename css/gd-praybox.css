@@ -5,6 +5,3 @@ table.gdadmin tr.datarow td {padding: 4px 10px; font-size: 12px; vertical-align:
 div.wrap div.donateform {width: 100%; background-color: #e6e6e6; border: 1px solid #CCCCCC;}
 div.wrap div.donateform p {padding: 0px 10px;}
 div.wrap div.donateform form {width: 120px; float: right;}
-
-.wrap form.update {width: 80%; margin: 10px auto; padding: 5px; background-color: #F0B2B2; border: 1px solid #CC0000; text-align: center;}
-.wrap form.update p {font-weight: bold; color: #CC0000;}
