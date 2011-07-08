@@ -122,7 +122,7 @@ return $view_details_output;
 		
 		if($flag_ratio<1){
 		$req_list_output.="<tr class='pb-datarow'><td>$title</td><td>$num_prayers</td><td>$submitted</td><td class='input'>";
-		$req_list_output.="<form method='post'><input type='hidden' name='action' value='view_details' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' value='View Details' /></form>";
+		$req_list_output.="<form method='post'><input type='hidden' name='actions' value='view_details' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' value='View Details' /></form>";
 		$req_list_output.="</td></tr>";
 		}
 	}
