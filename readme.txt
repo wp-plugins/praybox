@@ -10,6 +10,8 @@ Prayer request application that allows users to submit requests, or pray for exi
 
 == Description ==
 
+Thank you for some generous donations that have helpped us further develop this unique, important tool for Churches and organizations.  Thanks to you we have been able to fix several bugs, and add many new features for our 1.0 release.  Please help us continue to update and improve this and other ministry tools.
+
 Prayer request application that allows users to submit requests, or pray for existing requests.  All requests can be moderated from the admin section and can be flagged by members as inappropriate requests.  There is a IP ban system in place as well to reduce inappropriate behavior.
 
 Every time a request is prayed for, and the user clicks the "I Prayed For You" button, the requester will recieve a nightly email detailing how many prayers they received that day.
@@ -61,3 +63,18 @@ We respond to all support requests at our forum: [Support Forum](http://wordpres
 = June 14, 2011 - 0.4 =
 * Change text "Report This" to "Report Abuse" to be more clear
 * Fixed bug where people not using the extention "wp_" in their DB were not able to post, and were banned from posting
+
+= July 7, 2011 - 1.0 =
+* Fixed daily "Prayed For" email notifications
+* Fixed issue with a single request sometimes getting posted multiple times
+* Fixed issue where line spacing was translated to "rn"
+* Cleaned up a lot of code/functions to make Praybox more efficient
+* Added optional moderation and editing of posts before they are displayed
+* Added ability for users to edit their own prayer requests
+* Added ability for users to post praise notes and close their requests
+* Added actual URLs for requests, so users can link directly to requests
+* Added "honeypot" spam protection
+* Added Pagination to reqeust pages for large Prayboxs that have hundreds of requests, to break up the pages
+* Added an admin setting to set the number of requests per page
+* Added auto archiving of old requests
+* Added Admin Categories for requests (Pending, active, flagged, closed, archived) 
