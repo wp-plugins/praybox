@@ -1,4 +1,4 @@
-<?phps
+<?php
 function display_pb_forms($atts) {
 	global $wpdb;
 	function howManyPrayers($req_id){
