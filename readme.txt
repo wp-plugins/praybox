@@ -3,22 +3,18 @@ Contributors: guilddev
 Donate link: http://www.guilddev.com/
 Tags: church, pray, prayer, religion, ministry
 Requires at least: 3.0
-Tested up to: 3.2
-Stable tag: 1.01
+Tested up to: 3.1
+Stable tag: 0.4
 
 Prayer request application that allows users to submit requests, or pray for existing requests
 
 == Description ==
 
-Thank you for some generous donations that have helped us further develop this unique, important tool for Churches and organizations.  Thanks to you we have been able to fix several bugs, and add many new features for our 1.0 release.  Please help us continue to update and improve this and other ministry tools.
-
 Prayer request application that allows users to submit requests, or pray for existing requests.  All requests can be moderated from the admin section and can be flagged by members as inappropriate requests.  There is a IP ban system in place as well to reduce inappropriate behavior.
 
-Every time a request is prayed for, and the user clicks the "I Prayed For You" button, the requester will receive a nightly email detailing how many prayers they received that day.
+Every time a request is prayed for, and the user clicks the "I Prayed For You" button, the requester will recieve a nightly email detailing how many prayers they received that day.
 
 = Live Praybox =
-
-Video on how to use the Praybox frontend: [Praybox for Wordpress Youtube Video](http://www.youtube.com/watch?v=vcRpZZ8lS98)
 
 View our working version of Praybox, post a prayer request or pray for others here: [Praybox - Online Prayer Requests](http://www.praybox.com/)
 
@@ -42,9 +38,9 @@ We respond to all support requests at our forum: [Support Forum](http://wordpres
 4. Enter the appropriate information into the form fields on the 'PrayBox General Settings' page.
 5. Make sure the appropriate shortcodes are placed on the appropriate pages.
 5. Paste shortcodes accordingly:
-    * Paste this shortcode into the page you would like to use to display your listings: [pb-requests]
-    * Paste this shortcode into the page you would like to use to display your submission form: [pb-forms]
-    * IMPORTANT: Make sure you tell the plugin where you placed the [pb-forms] shortcode by selecting that page from the list beside "Prayer Request Form Page"
+	* Paste this shortcode into the page you would like to use to display your listings: [pb-requests]
+	* Paste this shortcode into the page you would like to use to display your submission form: [pb-forms]
+	* IMPORTANT: Make sure you tell the plugin where you placed the [pb-forms] shortcode by selecting that page from the list beside "Prayer Request Form Page"
 6. Have fun using this plugin and if you have any questions, requests, or positive feedback, we would love to hear from you at Guild Development, LLC (http://www.guilddev.com/wordpress-plugins/)
 
 == Screenshots ==
@@ -64,22 +60,4 @@ We respond to all support requests at our forum: [Support Forum](http://wordpres
 
 = June 14, 2011 - 0.4 =
 * Change text "Report This" to "Report Abuse" to be more clear
-* Fixed bug where people not using the extension "wp_" in their DB were not able to post, and were banned from posting
-
-= July 7, 2011 - 1.0 =
-* Fixed daily "Prayed For" email notifications
-* Fixed issue with single requests occasionally being posted multiple times
-* Fixed issue where line spacing was translated to "rn"
-* Cleaned up a lot of code/functions to make PrayBox run more efficiently
-* Added the option for admins to moderate and edit posts before they are displayed
-* Added the option for users to edit their own prayer requests
-* Added the option for users to post praise reports and close their requests
-* Added actual URLs for requests, so users can link directly to requests
-* Added strategic countermeasures to enhance spam protection
-* Added pagination to request list page for enhanced usability on sites with many requests
-* Added an admin setting to set the number of requests to display per page
-* Added the option for administrators to archive old requests
-* Added granularity for administrators by separating requests based upon active status (Pending, Active, Flagged, Closed, Archived)
-
-= July 7, 2011 - 1.01 =
-* Committed missing files to SVN
+* Fixed bug where people not using the extention "wp_" in their DB were not able to post, and were banned from posting
