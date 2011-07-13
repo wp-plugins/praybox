@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== PrayBox ===
 Contributors: guilddev
 Donate link: http://www.guilddev.com/
 Tags: church, pray, prayer, religion, ministry
@@ -10,7 +10,7 @@ Prayer request application that allows users to submit requests, or pray for exi
 
 == Description ==
 
-Thank you for some generous donations that have helped us further develop this unique, important tool for Churches and organizations.  Thanks to you we have been able to fix several bugs, and add many new features for our 1.0 release.  Please help us continue to update and improve this and other ministry tools.
+Thank you for some generous donations that have helped us further develop this unique, important tool for Churches and organizations.  Thanks to you we have been able to fix several bugs for our 1.0 release.  Please help us continue to update and improve this and other ministry tools.
 
 Prayer request application that allows users to submit requests, or pray for existing requests.  All requests can be moderated from the admin section and can be flagged by members as inappropriate requests.  There is a IP ban system in place as well to reduce inappropriate behavior.
 
@@ -22,13 +22,11 @@ Video on how to use the Praybox frontend: [Praybox for Wordpress Youtube Video](
 
 View our working version of Praybox, post a prayer request or pray for others here: [Praybox - Online Prayer Requests](http://www.praybox.com/)
 
-= Help Develop Praybox =
+= Want more features?  Upgrade to PrayBox+ =
 
-Help us continue to develop Praybox and similar apps with a small donation:
+Moderation, praise updates, spam protection, and more.  Read more here:
 
-* [$5 Donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=D5G57JLHSVVQW)
-* [$10 Donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3GKFL94FTHMFA)
-* [$20 Donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WWUVEUN7WV45Q)
+[Praybox+ - Premium Prayer Request Plugin](http://wordpress-plugins.guilddev.com/praybox-plus-premium-prayer-request-wordpress-plugin)
 
 = Support and Requests =
 
@@ -66,18 +64,11 @@ We respond to all support requests at our forum: [Support Forum](http://wordpres
 * Change text "Report This" to "Report Abuse" to be more clear
 * Fixed bug where people not using the extension "wp_" in their DB were not able to post, and were banned from posting
 
-= July 7, 2011 - 1.0 =
+= July 13, 2011 - 1.0 =
 * Fixed daily "Prayed For" email notifications
 * Fixed issue with single requests occasionally being posted multiple times
 * Fixed issue where line spacing was translated to "rn"
 * Cleaned up a lot of code/functions to make PrayBox run more efficiently
-* Added the option for admins to moderate and edit posts before they are displayed
-* Added the option for users to edit their own prayer requests
-* Added the option for users to post praise reports and close their requests
+* Added the option for users to edit anonymity and notification preferences for their own prayer requests
+* Added the option for users to close their own prayer requests
 * Added actual URLs for requests, so users can link directly to requests
-* Added strategic countermeasures to enhance spam protection
-* Added pagination to request list page for enhanced usability on sites with many requests
-* Added an admin setting to set the number of requests to display per page
-* Added the option for administrators to archive old requests
-* Added granularity for administrators by separating requests based upon active status (Pending, Active, Flagged, Closed, Archived)
-
