@@ -1,6 +1,6 @@
 <?php
-
 function pb_settings_page() {
+if(get_option('pb_admin_moderation')==""){$needupdate=1;}
 ?>
 
 <div class="wrap">
@@ -16,61 +16,22 @@ function pb_settings_page() {
 	}
 ?>
 <p><strong><?php _e('settings saved.','menu-test'); ?></strong></p>
+<?php } 
+
+ if($_POST['action']=="praybox_update"){
+	updateOptionsAlpha();
+?>
+<p><strong><?php _e('PrayBox Plugin Options Updated. <a href="?page=pb_settings">Click here to reload the PrayBox interface.</a>','menu-test'); ?></strong></p>
+<?php } else { 
+
+if($needupdate==1){ ?>
+<form method="post" class="update">
+<input type="hidden" name="action" value="praybox_update" />
+<p>Your PrayBox plugin has been updated and there are a few housekeeping things that need to be performed.</p>
+<input type="submit" value="Update PrayBox Options" />
+</form>
+
 <?php } ?>
-
-
-<div class="donateform">
-	<p>The development of this plugin has been and will continue to be a labor of love. It's one of those projects that we'd like to put more time into than we actually have available, and it really helps out when folks who enjoy using it can donate a little bit to help us keep it going.</p>
-	<p>With that in mind, I ask that you consider donating a few dollars to help us keep moving forward with the development of this plugin. If you have any special or custom requests, hire us! The more business we get, the more we can afford to spend time on projects like PrayBox. Thank you!</p>
-	<form class="donate" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-	<input type="hidden" name="cmd" value="_xclick">
-	<input type="hidden" name="business" value="support@guilddev.com">
-	<input type="hidden" name="lc" value="US">
-	<input type="hidden" name="item_name" value="WordPress Plugin Donation - PrayBox">
-	<input type="hidden" name="item_number" value="PB20-web">
-	<input type="hidden" name="amount" value="20.00">
-	<input type="hidden" name="currency_code" value="USD">
-	<input type="hidden" name="button_subtype" value="services">
-	<input type="hidden" name="no_note" value="1">
-	<input type="hidden" name="no_shipping" value="1">
-	<input type="hidden" name="shipping" value="20.00">
-	<input type="hidden" name="bn" value="PP-BuyNowBF:donate20.png:NonHosted">
-	<input type="image" src="http://www.guilddev.com/wp-content/uploads/2011/04/donate20.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-	<img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/scr/pixel.gif" width="1" height="1">
-	</form>
-	<form class="donate" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-	<input type="hidden" name="cmd" value="_xclick">
-	<input type="hidden" name="business" value="support@guilddev.com">
-	<input type="hidden" name="lc" value="US">
-	<input type="hidden" name="item_name" value="WordPress Plugin Donation - PrayBox">
-	<input type="hidden" name="item_number" value="PB10-web">
-	<input type="hidden" name="amount" value="10.00">
-	<input type="hidden" name="currency_code" value="USD">
-	<input type="hidden" name="button_subtype" value="services">
-	<input type="hidden" name="no_note" value="1">
-	<input type="hidden" name="no_shipping" value="1">
-	<input type="hidden" name="shipping" value="10.00">
-	<input type="hidden" name="bn" value="PP-BuyNowBF:donate10.png:NonHosted">
-	<input type="image" src="http://www.guilddev.com/wp-content/uploads/2011/04/donate10.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-	<img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/scr/pixel.gif" width="1" height="1">
-	</form>
-	<form class="donate" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-	<input type="hidden" name="cmd" value="_xclick">
-	<input type="hidden" name="business" value="support@guilddev.com">
-	<input type="hidden" name="lc" value="US">
-	<input type="hidden" name="item_name" value="WordPress Plugin Donation - PrayBox">
-	<input type="hidden" name="item_number" value="PB5-web">
-	<input type="hidden" name="amount" value="5.00">
-	<input type="hidden" name="currency_code" value="USD">
-	<input type="hidden" name="button_subtype" value="services">
-	<input type="hidden" name="no_note" value="1">
-	<input type="hidden" name="no_shipping" value="1">
-	<input type="hidden" name="shipping" value="5.00">
-	<input type="hidden" name="bn" value="PP-BuyNowBF:donate5.png:NonHosted">
-	<input type="image" src="http://www.guilddev.com/wp-content/uploads/2011/04/donate5.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-	<img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/scr/pixel.gif" width="1" height="1">
-	</form>
-<div style="clear:both;"></div></div>
 
 <p>Before using this plugin, make sure the correct information is listed in the fields below and paste the following shortcodes into the appropriate pages as indicated below:</p>
 
@@ -82,6 +43,8 @@ function pb_settings_page() {
 
 <p>Have fun using this plugin and if you have any questions, requests, or positive feedback, we would love to hear from you at <a href="http://www.guilddev.com/wordpress-plugins/" target="_blank">Guild Development, LLC</a></p>
 
+<div style="float:left; width:70%;">
+<div class="postbox">
 <form method="post" action="">
 	<input type="hidden" name="update" value="Y" />
 
@@ -160,13 +123,46 @@ function pb_settings_page() {
         <th scope="row">Prayer Gap Alert Email</th>
         <td><input type="text" name="pb_send_notify_email" value="<?php echo get_option('pb_send_notify_email'); ?>" size="80" /></td>
         </tr>
-                
+
     </table>
     
-    <p class="submit">
+    <p align="center" class="submit">
     <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
     </p>
 
 </form>
+<div style="clear:both;"></div></div>
+<div style="clear:both;"></div></div>
+
+<div class="rightcol">
+<div class="postbox">
+<h3>About Praybox</h3>
+	<p>The development of this plugin has been and will continue to be a labor of love. It's one of those projects that we'd like to put more time into than we actually have available, adding features to PrayBox and building more web-based tools for churches and ministries.</p>
 </div>
-<?php }
+<div class="postbox featured">
+<h3>Upgrade to PrayBox+</h3>
+	<p>Purchase PrayBox+, a premium paid version of PrayBox with advanced features, such as:</p>
+	<ul>
+		<li>Admins have the option to moderate and edit requests before they appear publicly</li>
+		<li>Admins can edit active requests</li>
+		<li>Users can edit their own prayer requests</li>
+		<li>Users can close their requests and add praise report notes</li>
+		<li>Ability to link directly to individual prayer requests</li>
+		<li>Enhanced spam protection</li>
+		<li>Prayer requests can be shown over multiple pages instead of all at once</li>
+		<li>Admins can set the number of requests that show up per page</li>
+		<li>Ability to archive old requests</li>
+		<li>Premium support and free lifetime upgrades</li>
+	</ul>
+	<p>For just a few bucks, you can enjoy these advanced features and help us to keep moving forward with the development of this plugin and future church/ministry related tools. Thank you!</p>
+	<p><a href="http://wordpress-plugins.guilddev.com/praybox-plus-premium-prayer-request-wordpress-plugin">Click here for more info or to upgrade to PrayBox+</a></p>
+</div>
+<div style="clear:both;"></div></div>
+
+<div style="float:left; width: 100%;">
+<p align="right">Prayer Gap emails set to run <em><?php echo wp_get_schedule('prayer_gap'); ?></em><br />
+Daily Emails set to run <em><?php echo wp_get_schedule('daily_emails'); ?></em></p>
+<div style="clear:both;"></div></div>
+
+<div style="clear:both;"></div></div>
+<?php }}
