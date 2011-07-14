@@ -91,8 +91,14 @@ function getRequestList($status){
 	return $output;
 }
 
-function displayRequests($page){
+function displayRequests($page,$permalink){
 	global $wpdb;
+	
+	$url_pos=strpos($permalink,"?");
+	if($url_pos===false){$varprefix="?";}else{$varprefix="&";}
+	
+	$link=$permalink.$varprefix;
+	
 	$flag_thresh=get_option('pb_flag_threshhold');
 	if(get_option('pb_timeframe_display')==0){$time_condition="";}else{$timeframe=strtotime("-".get_option('pb_timeframe_display')." days");$time_condition="AND submitted>$timeframe";}
 	$listingsperpage=get_option('pb_page_display');
@@ -106,7 +112,7 @@ function displayRequests($page){
 	$num_requests=$wpdb->get_var($wpdb->prepare("SELECT COUNT(id) $this_display_qry_from"));
 	$total_num_requests=$wpdb->get_var($wpdb->prepare("SELECT COUNT(id) $total_display_qry_from"));
 		
-	$req_list_output="<div id='praybox'>";
+	$req_list_output.="<div id='praybox'>";
 	$req_list_output.="<div class='intro'>".get_option('pb_request_list_intro')."<div style='clear:both;'></div></div>";
 	
 	if($listingsperpage!=0){
@@ -116,7 +122,7 @@ function displayRequests($page){
 		$req_list_output.="<div class='pagination'>Page: ";
 		while($i<=$total_pages){
 			if($page==$i){$linkclass=" class='active'";}else{$linkclass="";}
-			$req_list_output.=" <a href='?page=$i' $linkclass>$i</a>";
+			$req_list_output.=" <a href='$link"."page=$i' $linkclass>$i</a>";
 		$i++;
 		}
 		$req_list_output.="</div>";
@@ -139,7 +145,7 @@ function displayRequests($page){
 		
 		if($flag_ratio<1){
 		$req_list_output.="<tr class='pb-datarow'><td>$title</td><td>$num_prayers</td><td>$submitted</td><td class='input'>";
-		$req_list_output.="<a href='?req=$req_id'>View Details</a>";
+		$req_list_output.="<a href='$link"."req=$req_id'>View Details</a>";
 		$req_list_output.="</td></tr>";
 		}
 	}
@@ -152,7 +158,7 @@ function displayRequests($page){
 		$req_list_output.="<div class='pagination'>Page: ";
 		while($i<=$total_pages){
 			if($page==$i){$linkclass=" class='active'";}else{$linkclass="";}
-			$req_list_output.=" <a href='?page=$i' $linkclass>$i</a>";
+			$req_list_output.=" <a href='$link"."page=$i' $linkclass>$i</a>";
 		$i++;
 		}
 		$req_list_output.="</div>";
