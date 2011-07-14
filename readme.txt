@@ -4,7 +4,7 @@ Donate link: http://www.guilddev.com/
 Tags: church, pray, prayer, religion, ministry
 Requires at least: 3.0
 Tested up to: 3.2
-Stable tag: 1.0
+Stable tag: 1.0.1
 
 Prayer request application that allows users to submit requests, or pray for existing requests
 
@@ -70,3 +70,6 @@ We respond to all support requests at our forum: [Support Forum](http://wordpres
 * Added the option for users to edit anonymity and notification preferences for their own prayer requests
 * Added the option for users to close their own prayer requests
 * Added actual URLs for requests, so users can link directly to requests
+
+= July 14, 2011 - 1.0.1 =
+* Fixed "View Details" and related links on request list for sites not using permalinks
