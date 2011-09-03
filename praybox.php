@@ -1,15 +1,14 @@
 <?php
 /*
 Plugin Name: PrayBox
-Plugin URI: http://www.guilddev.com/wordpress-plugins/
+Plugin URI: http://profiles.wordpress.org/users/guilddev/
 Description: This is a plugin that facilitates intercessory prayer by allowing visitors to post prayer requests and/or respond to prayer requests that have been posted by clicking on a button indicating that the prayer request has been prayed for. At the end of each day, visitors who have submitted prayer requests receive an email that tells them how many times they have been prayed for that day.
 Version: 1.0.1
-Author: Guild Development, LLC
-Author URI: http://www.guilddev.com
+Author: Bryan Haddock
+Author URI: http://profiles.wordpress.org/users/guilddev/
 */
 
-/*  Copyright 2011  Guild Development, LLC  (email : support@guilddev.com)
-
+/*  
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
     published by the Free Software Foundation.
