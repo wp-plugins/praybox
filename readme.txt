@@ -1,27 +1,32 @@
 === PrayBox ===
-Contributors: Bryan Haddock
-Tags: church, pray, prayer, religion, ministry
+Contributors: blazingtorch
+Donate link: http://www.praybox.com/
+Tags: church, pray, prayer, religion, ministry, prayer request, ministry tools
 Requires at least: 3.0
 Tested up to: 3.2
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 
-Prayer request application that allows users to submit requests, or pray for existing requests
+PrayBox is a prayer request application that allows users to submit requests, or pray for existing requests, as well as allowing site administrators to manage prayer requests.
 
 == Description ==
 
-Prayer request application that allows users to submit requests, or pray for existing requests.  All requests can be moderated from the admin section and can be flagged by members as inappropriate requests.  There is a IP ban system in place as well to reduce inappropriate behavior.
+PrayBox is a prayer request application that allows users to submit requests, or pray for existing requests, as well as allowing site administrators to manage prayer requests.  All requests can be moderated from the admin section and can be flagged by members as inappropriate requests.  There is a IP ban system in place as well to reduce inappropriate behavior.
 
 Every time a request is prayed for, and the user clicks the "I Prayed For You" button, the requester will receive a nightly email detailing how many prayers they received that day.
 
-= Live Praybox =
+= Live PrayBox =
 
-View our working version of Praybox, post a prayer request or pray for others here: [Praybox - Online Prayer Requests](http://www.praybox.com/)
+View our working version of PrayBox, post a prayer request or pray for others here: [Praybox - Online Prayer Requests](http://www.praybox.com/)
 
 = Want more features?  Upgrade to PrayBox+ =
 
 Moderation, praise updates, spam protection, and more.  Read more here:
 
-[Praybox+ - Premium Prayer Request Plugin](http://www.praybox.com/praybox-plugin/)
+[PrayBox+ - Premium Prayer Request Plugin](http://www.praybox.com/praybox-plugin/)
+
+= Support and Requests =
+
+We respond to all support requests sent in through our PrayBox contact form at: [PrayBox Support](http://www.praybox.com/contact/)
 
 == Installation ==
 
@@ -34,7 +39,7 @@ Moderation, praise updates, spam protection, and more.  Read more here:
     * Paste this shortcode into the page you would like to use to display your listings: [pb-requests]
     * Paste this shortcode into the page you would like to use to display your submission form: [pb-forms]
     * IMPORTANT: Make sure you tell the plugin where you placed the [pb-forms] shortcode by selecting that page from the list beside "Prayer Request Form Page"
-
+6. Have fun using this plugin and if you have any questions, requests, or positive feedback, we would love to hear from you at Guild Development, LLC (http://www.guilddev.com/wordpress-plugins/)
 
 == Screenshots ==
 
@@ -66,3 +71,9 @@ Moderation, praise updates, spam protection, and more.  Read more here:
 
 = July 14, 2011 - 1.0.1 =
 * Fixed "View Details" and related links on request list for sites not using permalinks
+
+= August 3, 2011 - 1.0.2 =
+* Fixed problem with escape characters that was occasionally causing problems during activation.
+
+= November 17, 2011 - 1.0.3 =
+* Fixed intermittent problems with email scripts that were causing problems during installation.
