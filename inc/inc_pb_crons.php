@@ -73,7 +73,8 @@ function send_daily_emails() {
 
 		if($notify==1){
 	
-			$management_url=site_url()."/?page_id=".get_option('pb_management_page')."&pbid=$authcode";
+			//$management_url=site_url()."/?page_id=".get_option('pb_management_page')."&pbid=$authcode";
+			$management_url=get_permalink(get_option('pb_management_page'))."?pbid=$authcode";
 			
 		   	$site_name=get_bloginfo('name');
 		   	$email_from=get_option('pb_reply_to_email');
