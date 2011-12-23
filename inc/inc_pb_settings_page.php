@@ -4,7 +4,8 @@ if(get_option('pb_admin_moderation')==""){$needupdate=1;}
 ?>
 
 <div class="wrap">
-<h2>PrayBox General Settings Page</h2>
+<img src="<?php echo plugins_url().'/praybox/images/praybox-logo.png'; ?>" />
+<h2>General Settings</h2>
 
 <?php
  if( isset($_POST['update']) && $_POST['update'] == 'Y' ) {
@@ -41,7 +42,7 @@ if($needupdate==1){ ?>
 	<li>IMPORTANT: Make sure you tell the plugin where you placed the [pb-forms] shortcode by selecting that page from the list beside "Prayer Request Form Page" below</li>
 </ul>
 
-<p>Have fun using this plugin and if you have any questions, requests, or positive feedback, we would love to hear from you at <a href="http://www.guilddev.com/wordpress-plugins/" target="_blank">Guild Development, LLC</a></p>
+<p>Have fun using this plugin and if you have any questions, requests, or positive feedback, we would love to hear from you at <a href="http://www.praybox.com/" target="_blank">www.praybox.com</a>.  We are constantly making updates to this plugin and looking for opportunities to develop new applications, so please do not hesitate to contact us.</p>
 
 <div style="float:left; width:70%;">
 <div class="postbox">
@@ -155,7 +156,7 @@ if($needupdate==1){ ?>
 		<li>Premium support and free lifetime upgrades</li>
 	</ul>
 	<p>For just a few bucks, you can enjoy these advanced features and help us to keep moving forward with the development of this plugin and future church/ministry related tools. Thank you!</p>
-	<p><a href="http://wordpress-plugins.guilddev.com/praybox-plus-premium-prayer-request-wordpress-plugin">Click here for more info or to upgrade to PrayBox+</a></p>
+	<p><a href="http://www.praybox.com/praybox-plugin/">Click here for more info or to upgrade to PrayBox+</a></p>
 </div>
 <div style="clear:both;"></div></div>
 
