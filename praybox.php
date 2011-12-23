@@ -3,7 +3,7 @@
 Plugin Name: PrayBox
 Plugin URI: http://www.praybox.com/
 Description: This is a plugin that facilitates intercessory prayer by allowing visitors to post prayer requests and/or respond to prayer requests that have been posted by clicking on a button indicating that the prayer request has been prayed for. At the end of each day, visitors who have submitted prayer requests receive an email that tells them how many times they have been prayed for that day.
-Version: 1.0.3
+Version: 1.0.4
 Author: Blazing Torch, Inc.
 Author URI: http://www.blazingtorch.com
 */
