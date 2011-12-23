@@ -4,13 +4,13 @@ Donate link: http://www.praybox.com/
 Tags: church, pray, prayer, religion, ministry, prayer request, ministry tools
 Requires at least: 3.0
 Tested up to: 3.2
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 
 PrayBox is a prayer request application that allows users to submit requests, or pray for existing requests, as well as allowing site administrators to manage prayer requests.
 
 == Description ==
 
-PrayBox is a prayer request application that allows users to submit requests, or pray for existing requests, as well as allowing site administrators to manage prayer requests.  All requests can be moderated from the admin section and can be flagged by members as inappropriate requests.  There is a IP ban system in place as well to reduce inappropriate behavior.
+PrayBox is a prayer request application that allows users to submit requests, or pray for existing requests, as well as allowing site administrators to manage prayer requests.  All requests can be moderated from the admin section and can be flagged by members as inappropriate requests.  There is a IP ban system in place as well to discourage improper usage.
 
 Every time a request is prayed for, and the user clicks the "I Prayed For You" button, the requester will receive a nightly email detailing how many prayers they received that day.
 
@@ -39,7 +39,7 @@ We respond to all support requests sent in through our PrayBox contact form at: 
     * Paste this shortcode into the page you would like to use to display your listings: [pb-requests]
     * Paste this shortcode into the page you would like to use to display your submission form: [pb-forms]
     * IMPORTANT: Make sure you tell the plugin where you placed the [pb-forms] shortcode by selecting that page from the list beside "Prayer Request Form Page"
-6. Have fun using this plugin and if you have any questions, requests, or positive feedback, we would love to hear from you at Guild Development, LLC (http://www.guilddev.com/wordpress-plugins/)
+6. Have fun using this plugin and if you have any questions, requests, or positive feedback, we would love to hear from you at www.praybox.com (http://www.praybox.com/)
 
 == Screenshots ==
 
@@ -77,3 +77,6 @@ We respond to all support requests sent in through our PrayBox contact form at: 
 
 = November 17, 2011 - 1.0.3 =
 * Fixed intermittent problems with email scripts that were causing problems during installation.
+
+= December 23, 2011 - 1.0.4 =
+* Repaired minor miscellaneous data references.
