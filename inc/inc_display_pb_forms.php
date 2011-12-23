@@ -53,14 +53,16 @@ return $updated_request_output;
 	if($flaggit==0){
 		$wpdb->insert($wpdb->prefix.'pb_requests',array('first_name'=>$first_name,'last_name'=>$last_name,'anon'=>$anon,'email'=>$email,'authcode'=>$authcode,'submitted'=>$time_now,'title'=>$title,'body'=>$body,'notify'=>$notify,'ip_address'=>$ip_address,'active'=>$active));
 		
-		$management_url=home_url()."/?page_id=".get_option('pb_management_page')."&pbid=$authcode";
+		//$management_url=home_url()."/?page_id=".get_option('pb_management_page')."&pbid=$authcode";
+		$management_url=get_permalink(get_option('pb_management_page'))."?pbid=$authcode";
 		
 	   	$email_from=get_option('pb_reply_to_email');
 	   	$email_subject="Prayer Request Posted";
 	   	$email_message=get_option('pb_email_prefix');
 	   	$email_message.="\n\nYour prayer request has been posted. If you would like to edit your prayer request or submit a praise report for an answered prayer, click here: $management_url\n\nIf you have indicated that you would like to receive notifications, you will receive an email at the end of each day that your prayer request is lifted up to the Lord letting you know how many times you were prayed for that day.\n\n";
 	   	$email_message.=get_option('pb_email_suffix');
-		$headers = 'Reply-To: '.$email_from . \\"\r\n\\";
+		$headers .= 'Reply-To:'.$site_name.' <'.$email_from.'>'."\r\n";
+		$headers.= 'From:'.$site_name.' <'.$email_from.'>'."\r\n";
 	   	
 	   	wp_mail($email,$email_subject,$email_message,$headers);
 
