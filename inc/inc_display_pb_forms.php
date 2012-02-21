@@ -53,8 +53,7 @@ return $updated_request_output;
 	if($flaggit==0){
 		$wpdb->insert($wpdb->prefix.'pb_requests',array('first_name'=>$first_name,'last_name'=>$last_name,'anon'=>$anon,'email'=>$email,'authcode'=>$authcode,'submitted'=>$time_now,'title'=>$title,'body'=>$body,'notify'=>$notify,'ip_address'=>$ip_address,'active'=>$active));
 		
-		//$management_url=home_url()."/?page_id=".get_option('pb_management_page')."&pbid=$authcode";
-		$management_url=get_permalink(get_option('pb_management_page'))."?pbid=$authcode";
+		$management_url=getManagementUrl($authcode);
 		
 	   	$email_from=get_option('pb_reply_to_email');
 	   	$email_subject="Prayer Request Posted";
