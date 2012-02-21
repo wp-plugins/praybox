@@ -4,7 +4,7 @@ Donate link: http://www.praybox.com/
 Tags: church, pray, prayer, religion, ministry, prayer request, ministry tools
 Requires at least: 3.0
 Tested up to: 3.2
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 
 PrayBox is a prayer request application that allows users to submit requests, or pray for existing requests, as well as allowing site administrators to manage prayer requests.
 
@@ -80,3 +80,6 @@ We respond to all support requests sent in through our PrayBox contact form at: 
 
 = December 23, 2011 - 1.0.4 =
 * Repaired minor miscellaneous data references.
+
+= February 21, 2012 - 1.0.5 =
+* Fixed problems regarding url structure for sites not using 'pretty' permalinks.
