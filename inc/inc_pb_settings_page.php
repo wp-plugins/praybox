@@ -12,7 +12,7 @@ if(get_option('pb_admin_moderation')==""){$needupdate=1;}
 	$kv=array();
 	foreach($_POST as $key => $value){
 		if($key!="update"){
-		update_option($key,$value);	
+		update_option($key,stripslashes($value));	
 		}
 	}
 ?>

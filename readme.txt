@@ -83,3 +83,4 @@ We respond to all support requests sent in through our PrayBox contact form at: 
 
 = February 21, 2012 - 1.0.5 =
 * Fixed problems regarding url structure for sites not using 'pretty' permalinks.
+* Fixed escaping quotation marks for data input on General Settings page.
