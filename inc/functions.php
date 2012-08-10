@@ -1,5 +1,9 @@
 <?php
 /* PLUGIN FUNCTIONS */
+function clean($string){
+	return strip_tags(nl2br($string),"<br>");
+}
+
 function howManyFlags($req_id){
 	global $wpdb;
 	$flags=$wpdb->get_results("SELECT id FROM ".$wpdb->prefix."pb_flags WHERE request_id='$req_id'");
@@ -168,4 +172,21 @@ function displayRequests($page,$permalink){
 	$req_list_output.="<div style='clear:both;'></div></div>";
 
 	return $req_list_output;
+}
+
+function getManagementUrl($authcode){
+	$management_permalink=get_permalink(get_option('pb_management_page'));
+	
+	$pos=strpos($management_permalink,"?");
+	
+	if($pos===FALSE){
+		$url_char="?";
+	}else{	
+		$url_char="&";
+	}
+	
+	$management_url=$management_permalink.$url_char."pbid=".$authcode;
+	
+	return $management_url;
+
 }

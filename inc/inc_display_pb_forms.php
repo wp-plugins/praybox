@@ -34,13 +34,13 @@ return $updated_request_output;
 
 }elseif($_POST['action']=="submit_request"){
 //Submit Request to DB, Email Mgmt Link, and Display a Message
-	if($_POST['first_name']!=""){$first_name=mysql_real_escape_string(stripslashes($_POST['first_name']));}else{$first_name="anon";}
-	if($_POST['last_name']!=""){$last_name=mysql_real_escape_string(stripslashes($_POST['last_name']));}else{$last_name="anon";}
+	if($_POST['first_name']!=""){$first_name=clean($_POST['first_name']);}else{$first_name="anon";}
+	if($_POST['last_name']!=""){$last_name=clean($_POST['last_name']);}else{$last_name="anon";}
 	if($_POST['anon']=='on'){$anon=1;}else{$anon=0;}	
-	$email=mysql_real_escape_string(stripslashes($_POST['email']));	
+	$email=$_POST['email'];	
 	$authcode=rand_chars();
-	$title=mysql_real_escape_string(stripslashes($_POST['title']));	
-	$body=mysql_real_escape_string(stripslashes($_POST['body']));	
+	$title=clean($_POST['title']);	
+	$body=clean($_POST['body']);	
 	if($_POST['notify']=='on'){$notify=1;}else{$notify=0;}
 	$ip_address=$_SERVER['REMOTE_ADDR'];
 	$time_now=time();
