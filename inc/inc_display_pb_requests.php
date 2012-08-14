@@ -6,7 +6,7 @@ function display_pb_requests($atts) {
 	$page_id=$post->ID;
 	$permalink=get_permalink($page_id);
 	
-if(isset($_GET['req'])){
+if((isset($_GET['req']))&&(is_numeric($_GET['req']))){
 
 //VIEW DETAILS OUTPUT
 	$req_id=$_GET['req'];
