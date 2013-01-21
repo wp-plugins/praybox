@@ -60,7 +60,7 @@ function send_daily_emails() {
 	foreach($daily_prayers as $prayer){
 		$request_id=$prayer->request_id;
 		
-		$num_prayers=$wpdb->get_var($wpdb->prepare("SELECT COUNT(id) FROM ".$wpdb->prefix."pb_prayedfor WHERE prayedfor_date>'$onedayago' AND request_id='$request_id'"));
+		$num_prayers=count($wpdb->get_var("SELECT id FROM ".$wpdb->prefix."pb_prayedfor WHERE prayedfor_date>'$onedayago' AND request_id='$request_id'"));
 	
 		$prayer_request=$wpdb->get_row("SELECT first_name,last_name,email,title,notify,authcode FROM ".$wpdb->prefix."pb_requests WHERE id='$request_id'");
 		

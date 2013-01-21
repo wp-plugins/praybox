@@ -16,7 +16,7 @@ function howManyPrayers($req_id){
 }
 function isIPBanned($ip){
 	global $wpdb;
-	$result = $wpdb->get_var($wpdb->prepare("SELECT COUNT(id) FROM ".$wpdb->prefix."pb_banned_ips WHERE ip_address='$ip'"));
+	$result=count($wpdb->get_results("SELECT id FROM ".$wpdb->prefix."pb_banned_ips WHERE ip_address='$ip'"));
 	if($result==0){return "pass";}else{return "fail";}
 }
 function prePgphOutput($input){
@@ -45,7 +45,7 @@ function rand_chars() {
 }
 function isDuplicate($fname,$lname,$email,$title,$ipaddy){
 	global $wpdb;
-	$result = $wpdb->get_var($wpdb->prepare("SELECT COUNT(id) FROM ".$wpdb->prefix."pb_requests WHERE first_name='$fname' AND last_name='$lname' AND email='$email' AND title='$title' AND ip_address='$ipaddy'"));
+	$result = count($wpdb->get_results("SELECT id FROM ".$wpdb->prefix."pb_requests WHERE first_name='$fname' AND last_name='$lname' AND email='$email' AND title='$title' AND ip_address='$ipaddy'"));
 	if($result==0){return "pass";}else{return "fail";}
 }
 
@@ -113,8 +113,8 @@ function displayRequests($page,$permalink){
 	$total_display_qry_from="FROM ".$wpdb->prefix."pb_requests WHERE active='1' $time_condition";
 	
 	$active_requests=$wpdb->get_results("SELECT id,title,body,submitted $this_display_qry_from");
-	$num_requests=$wpdb->get_var($wpdb->prepare("SELECT COUNT(id) $this_display_qry_from"));
-	$total_num_requests=$wpdb->get_var($wpdb->prepare("SELECT COUNT(id) $total_display_qry_from"));
+	$num_requests=count($wpdb->get_results("SELECT id $this_display_qry_from"));
+	$total_num_requests=count($wpdb->get_results("SELECT id $total_display_qry_from"));
 		
 	$req_list_output.="<div id='praybox'>";
 	$req_list_output.="<div class='intro'>".get_option('pb_request_list_intro')."<div style='clear:both;'></div></div>";
