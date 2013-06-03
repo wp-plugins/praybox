@@ -4,7 +4,7 @@ global $wpdb;
 ?>
 
 <div class="wrap">
-<h2>PrayBox Active Prayer Request List</h2>
+<h2 class="logo-title">PrayBox Active Prayer Request List</h2>
 
 <?php include("edit_request_form.php"); ?>
 

@@ -4,8 +4,7 @@ if(get_option('pb_admin_moderation')==""){$needupdate=1;}
 ?>
 
 <div class="wrap">
-<img src="<?php echo plugins_url().'/praybox/images/praybox-logo.png'; ?>" />
-<h2>General Settings</h2>
+<h2 class="logo-title">PrayBox General Settings</h2>
 
 <?php
  if( isset($_POST['update']) && $_POST['update'] == 'Y' ) {
@@ -42,7 +41,7 @@ if($needupdate==1){ ?>
 	<li>IMPORTANT: Make sure you tell the plugin where you placed the [pb-forms] shortcode by selecting that page from the list beside "Prayer Request Form Page" below</li>
 </ul>
 
-<p>Have fun using this plugin and if you have any questions, requests, or positive feedback, we would love to hear from you at <a href="http://www.praybox.com/" target="_blank">www.praybox.com</a>.  We are constantly making updates to this plugin and looking for opportunities to develop new applications, so please do not hesitate to contact us.</p>
+<p>Have fun using this plugin and if you have any questions, requests, or positive feedback, we would love to hear from you at <a href="http://www.blazingtorch.com/" target="_blank">www.blazingtorch.com</a>.  We are constantly making updates to this plugin and looking for opportunities to develop new applications, so please do not hesitate to <a href="http://www.blazingtorch.com/contact/" target="_blank">contact us</a>.</p>
 
 <div style="float:left; width:70%;">
 <div class="postbox">
@@ -136,9 +135,10 @@ if($needupdate==1){ ?>
 <div style="clear:both;"></div></div>
 
 <div class="rightcol">
-<div class="postbox">
-<h3>About Praybox</h3>
+<div class="postbox smallbottmargin">
+<h3>Do You Enjoy Using PrayBox?</h3>
 	<p>The development of this plugin has been and will continue to be a labor of love. It's one of those projects that we'd like to put more time into than we actually have available, adding features to PrayBox and building more web-based tools for churches and ministries.</p>
+	<p><strong>If you like PrayBox, please consider giving us a 5-star rating on the WordPress Plugins directory by <a href="http://wordpress.org/support/view/plugin-reviews/praybox?rate=5#postform" target="_blank">clicking here</a>!</strong></p>
 </div>
 <div class="postbox featured">
 <h3>Upgrade to PrayBox+</h3>
@@ -156,7 +156,7 @@ if($needupdate==1){ ?>
 		<li>Premium support and free lifetime upgrades</li>
 	</ul>
 	<p>For just a few bucks, you can enjoy these advanced features and help us to keep moving forward with the development of this plugin and future church/ministry related tools. Thank you!</p>
-	<p><a href="http://www.praybox.com/praybox-plugin/">Click here for more info or to upgrade to PrayBox+</a></p>
+	<p><a href="http://www.blazingtorch.com/products/praybox-prayer-request-management/">Click here for more info or to upgrade to PrayBox+</a></p>
 </div>
 <div style="clear:both;"></div></div>
 

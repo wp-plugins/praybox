@@ -5,7 +5,7 @@ global $wpdb;
 ?>
 
 <div class="wrap">
-<h2>PrayBox Closed Prayer Request List</h2>
+<h2 class="logo-title">PrayBox Closed Prayer Request List</h2>
 <?php
 if($_POST['action']=="remove_request"){
 	$req_id=$_POST['pb_request_id'];

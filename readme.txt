@@ -4,9 +4,9 @@ Donate link: http://www.praybox.com/
 Tags: church, pray, prayer, religion, ministry, prayer request, ministry tools
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 
-PrayBox is a prayer request application that allows users to submit requests, or pray for existing requests, as well as allowing site administrators to manage prayer requests.
+PrayBox is being used to manage prayer requests on WordPress websites all over the world.
 
 == Description ==
 
@@ -22,11 +22,11 @@ View our working version of PrayBox, post a prayer request or pray for others he
 
 Moderation, praise updates, spam protection, and more.  Read more here:
 
-[PrayBox+ - Premium Prayer Request Plugin](http://www.praybox.com/praybox-plugin/)
+[PrayBox+ - Premium Prayer Request Plugin](http://www.blazingtorch.com/products/praybox-prayer-request-management/)
 
 = Support and Requests =
 
-We respond to all support requests sent in through our PrayBox contact form at: [PrayBox Support](http://www.praybox.com/contact/)
+We respond to all support requests sent in through our PrayBox contact form at: [PrayBox Support](http://www.blazingtorch.com/contact/)
 
 == Installation ==
 
@@ -93,3 +93,6 @@ We respond to all support requests sent in through our PrayBox contact form at: 
 
 = January 21, 2013 - 1.0.8 =
 * Updated for better functionality in WP v3.5.
+
+= June 3, 2013 - 1.0.9 =
+* Updated graphic/interface assets.

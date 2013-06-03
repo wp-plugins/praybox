@@ -4,7 +4,7 @@ global $wpdb;
 ?>
 
 <div class="wrap">
-<h2>PrayBox Flagged Prayer Requests</h2>
+<h2 class="logo-title">PrayBox Flagged Prayer Requests</h2>
 
 <?php
 if($_POST['action']=="remove_request"){

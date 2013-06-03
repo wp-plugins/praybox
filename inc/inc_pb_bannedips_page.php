@@ -4,7 +4,7 @@ global $wpdb;
 ?>
 
 <div class="wrap">
-<h2>PrayBox Banned IP Addresses</h2>
+<h2 class="logo-title">PrayBox Banned IP Addresses</h2>
 
 <?php
 if($_POST['action']=="unban_ip"){
