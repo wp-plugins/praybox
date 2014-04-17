@@ -3,7 +3,7 @@ Contributors: blazingtorch
 Donate link: http://www.praybox.com/
 Tags: church, pray, prayer, religion, ministry, prayer request, ministry tools
 Requires at least: 3.0
-Tested up to: 3.5
+Tested up to: 3.9
 Stable tag: 1.0.9
 
 PrayBox is being used to manage prayer requests on WordPress websites all over the world.
