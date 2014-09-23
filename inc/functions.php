@@ -59,38 +59,42 @@ function getRequestList($status){
 	global $wpdb;
 	$requests=$wpdb->get_results("SELECT id,first_name,last_name,email,title,body,ip_address,submitted FROM ".$wpdb->prefix."pb_requests $querycond ORDER BY submitted DESC");
 	
-	foreach($requests as $req){
-		$req_id=$req->id;
-		$first_name=stripslashes($req->first_name);
-		$last_name=stripslashes($req->last_name);
-		$email=$req->email;
-		$title=stripslashes($req->title);
-		$body=prePgphOutput($req->body);
-		$ip=$req->ip_address;
-		$submitted=date("m-d-y",$req->submitted);
-		$num_prayers=howManyPrayers($req_id);
-		
-		$output.="<tr class='datarow'><td>$req_id</td><td>$first_name $last_name<br />$email</td><td><strong>$title</strong><br />$body</td><td>$ip</td><td>$submitted</td><td>$num_prayers</td><td align='center'>";
-
-		if($status=="pending"){
-			$output.="<form method='post'><input type='hidden' name='action' value='approve_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Approve Request' /></form>";
-			$output.="<form method='post'><input type='hidden' name='action' value='edit_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Edit Request' /></form>";
-			$output.="<form method='post'><input type='hidden' name='action' value='remove_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Remove Request' /></form>";
-			$output.="<form method='post'><input type='hidden' name='action' value='remove_ban' /><input type='hidden' name='pb_ip_address' value='$ip' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Remove and Ban IP' /></form>";
+	if($requests){
+		foreach($requests as $req){
+			$req_id=$req->id;
+			$first_name=stripslashes($req->first_name);
+			$last_name=stripslashes($req->last_name);
+			$email=$req->email;
+			$title=stripslashes($req->title);
+			$body=prePgphOutput($req->body);
+			$ip=$req->ip_address;
+			$submitted=date("m-d-y",$req->submitted);
+			$num_prayers=howManyPrayers($req_id);
+			
+			$output="<tr><td>$req_id</td><td>$first_name $last_name<br />$email</td><td><strong>$title</strong><br />$body</td><td>$ip</td><td>$submitted</td><td>$num_prayers</td><td>";
+	
+			if($status=="pending"){
+				$output.="<form method='post'><input type='hidden' name='action' value='approve_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Approve' /></form>";
+				$output.="<form method='post'><input type='hidden' name='action' value='edit_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Edit' /></form>";
+				$output.="<form method='post'><input type='hidden' name='action' value='remove_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Delete' /></form>";
+				$output.="<form method='post'><input type='hidden' name='action' value='remove_ban' /><input type='hidden' name='pb_ip_address' value='$ip' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Remove/Ban' /></form>";
+			}
+			if($status=="active"){
+				//$output.="<form method='post'><input type='hidden' name='action' value='edit_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Edit' /></form>";
+				$output.="<form method='post'><input type='hidden' name='action' value='remove_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Remove' /></form>";
+				$output.="<form method='post'><input type='hidden' name='action' value='close_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Close' /></form>";
+				$output.="<form method='post'><input type='hidden' name='action' value='remove_ban' /><input type='hidden' name='pb_ip_address' value='$ip' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Remove/Ban' /></form>";
+			}
+			if($status=="closed"){
+				//$output.="<form method='post'><input type='hidden' name='action' value='archive_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Archive' /></form>";
+				$output.="<form method='post'><input type='hidden' name='action' value='remove_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Remove' /></form>";
+				$output.="<form method='post'><input type='hidden' name='action' value='reopen_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Reopen' /></form>";
+			}
+			
+			$output.="</td></tr>";
 		}
-		if($status=="active"){
-			//$output.="<form method='post'><input type='hidden' name='action' value='edit_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Edit Request' /></form>";
-			$output.="<form method='post'><input type='hidden' name='action' value='remove_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Remove Request' /></form>";
-			$output.="<form method='post'><input type='hidden' name='action' value='close_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Close Request' /></form>";
-			$output.="<form method='post'><input type='hidden' name='action' value='remove_ban' /><input type='hidden' name='pb_ip_address' value='$ip' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Remove and Ban IP' /></form>";
-		}
-		if($status=="closed"){
-			//$output.="<form method='post'><input type='hidden' name='action' value='archive_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Archive Request' /></form>";
-			$output.="<form method='post'><input type='hidden' name='action' value='remove_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Remove Request' /></form>";
-			$output.="<form method='post'><input type='hidden' name='action' value='reopen_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Reopen Request' /></form>";
-		}
-		
-		$output.="</td></tr>";
+	}else{
+		$output="<tr><td colspan='7'>There are currently no $status prayer requests.</td></tr>";
 	}
 	return $output;
 }

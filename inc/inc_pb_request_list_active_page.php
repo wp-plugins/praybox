@@ -5,6 +5,7 @@ global $wpdb;
 
 <div class="wrap">
 <h2 class="logo-title">PrayBox Active Prayer Request List</h2>
+<div id="pbx-wrap">
 
 <?php include("edit_request_form.php"); ?>
 
@@ -53,12 +54,13 @@ if($_POST['action']=="remove_ban"){
 
 <h3>Active Prayer Requests</h3>
 
-<table class="gdadmin">
-<tr class="headrow"><td>ID</td><td>First/Last/Email</td><td width="250">Prayer Request</td><td>IP</td><td>Posted</td><td># Prayers</td><td>&nbsp;</td></tr>
+<table class="pbx-data">
+<tr><th>ID</th><th>First/Last/Email</th><th width="250">Prayer Request</th><th>IP</th><th>Posted</th><th># Prayers</th><th>&nbsp;</th></tr>
 
 <?php
 echo getRequestList('active');
 ?>
 </table>
+</div>
 </div>
 <?php }

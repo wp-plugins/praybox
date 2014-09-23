@@ -3,13 +3,13 @@ function display_pb_forms($atts) {
 	global $wpdb;
 
 
-if($_POST['action']=="update_request"){
+if(isset($_POST['action']) && $_POST['action']=="update_request"){
 
 //UPDATE REQUEST
 	$req_id=$_POST['req_id'];
-	if($_POST['anon']=='on'){$anon=1;}else{$anon=0;}	
-	if($_POST['notify']=='on'){$notify=1;}else{$notify=0;}
-	if($_POST['closed']=='on'){
+	$anon=(isset($_POST['anon']) && $_POST['anon']=='on')? 1 : 0;	
+	$notify=(isset($_POST['notify']) && $_POST['notify']=='on')? 1 : 0;
+	if(isset($_POST['closed']) && $_POST['closed']=='on'){
 		$closed=time();
 		$active=2;
 	$wpdb->update($wpdb->prefix.'pb_requests',array('anon'=>$anon,'closed'=>$closed,'notify'=>$notify,'active'=>$active),array('id'=>$req_id));
@@ -32,16 +32,16 @@ if($_POST['action']=="update_request"){
 
 return $updated_request_output;
 
-}elseif($_POST['action']=="submit_request"){
+}elseif(isset($_POST['action']) && $_POST['action']=="submit_request"){
 //Submit Request to DB, Email Mgmt Link, and Display a Message
-	if($_POST['first_name']!=""){$first_name=clean($_POST['first_name']);}else{$first_name="anon";}
-	if($_POST['last_name']!=""){$last_name=clean($_POST['last_name']);}else{$last_name="anon";}
-	if($_POST['anon']=='on'){$anon=1;}else{$anon=0;}	
+	$first_name=(isset($_POST['first_name']) && $_POST['first_name']!="")? clean($_POST['first_name']) : "anon";
+	$last_name=(isset($_POST['last_name']) && $_POST['last_name']!="")? clean($_POST['last_name']) : "anon";
+	$anon=(isset($_POST['anon']) && $_POST['anon']=='on')? 1 : 0;	
 	$email=$_POST['email'];	
 	$authcode=rand_chars();
 	$title=clean($_POST['title']);	
 	$body=clean($_POST['body']);	
-	if($_POST['notify']=='on'){$notify=1;}else{$notify=0;}
+	$notify=(isset($_POST['notify']) && $_POST['notify']=='on')? 1 : 0;
 	$ip_address=$_SERVER['REMOTE_ADDR'];
 	$time_now=time();
 	if(get_option('pb_admin_moderation')==1){$active=0;}else{$active=1;}
@@ -51,6 +51,8 @@ return $updated_request_output;
 
 	//IF NO FLAGS, RUN IT
 	if($flaggit==0){
+		$site_name=get_bloginfo('name');
+		
 		$wpdb->insert($wpdb->prefix.'pb_requests',array('first_name'=>$first_name,'last_name'=>$last_name,'anon'=>$anon,'email'=>$email,'authcode'=>$authcode,'submitted'=>$time_now,'title'=>$title,'body'=>$body,'notify'=>$notify,'ip_address'=>$ip_address,'active'=>$active));
 		
 		$management_url=getManagementUrl($authcode);
@@ -60,7 +62,7 @@ return $updated_request_output;
 	   	$email_message=get_option('pb_email_prefix');
 	   	$email_message.="\n\nYour prayer request has been posted. If you would like to edit your prayer request or submit a praise report for an answered prayer, click here: $management_url\n\nIf you have indicated that you would like to receive notifications, you will receive an email at the end of each day that your prayer request is lifted up to the Lord letting you know how many times you were prayed for that day.\n\n";
 	   	$email_message.=get_option('pb_email_suffix');
-		$headers .= 'Reply-To:'.$site_name.' <'.$email_from.'>'."\r\n";
+		$headers= 'Reply-To:'.$site_name.' <'.$email_from.'>'."\r\n";
 		$headers.= 'From:'.$site_name.' <'.$email_from.'>'."\r\n";
 	   	
 	   	wp_mail($email,$email_subject,$email_message,$headers);
@@ -94,7 +96,7 @@ return $submitted_output;
 
 }else{
 
-if($_GET['pbid']==""){
+if(!isset($_GET['pbid']) || $_GET['pbid']==""){
 
 //INITIAL SUBMISSION FORM OUTPUT
 
