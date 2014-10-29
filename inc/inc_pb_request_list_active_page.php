@@ -4,13 +4,13 @@ global $wpdb;
 ?>
 
 <div class="wrap">
-<h2 class="logo-title">PrayBox Active Prayer Request List</h2>
+<h2 class="logo-title"><?php echo PB_ADMIN_ACTIVE_PAGE_TITLE; ?></h2>
 <div id="pbx-wrap">
 
 <?php include("edit_request_form.php"); ?>
 
 <?php
-if($_POST['action']=="edit_request_exec"){
+if(isset($_POST['action']) && $_POST['action']=="edit_request_exec"){
 	$req_id=$_POST['pb_request_id'];
 	$first_name=$_POST['first_name'];
 	$last_name=$_POST['last_name'];
@@ -23,7 +23,7 @@ if($_POST['action']=="edit_request_exec"){
 <?php } ?>
 
 <?php
-if($_POST['action']=="remove_request"){
+if(isset($_POST['action']) && $_POST['action']=="remove_request"){
 	$req_id=$_POST['pb_request_id'];
 	$wpdb->query("DELETE FROM ".$wpdb->prefix."pb_requests WHERE id='$req_id'");
 	$wpdb->query("DELETE FROM ".$wpdb->prefix."pb_flags WHERE request_id='$req_id'");
@@ -32,16 +32,16 @@ if($_POST['action']=="remove_request"){
 <?php } ?>
 
 <?php
-if($_POST['action']=="close_request"){
+if(isset($_POST['action']) && $_POST['action']=="close_request"){
 	$req_id=$_POST['pb_request_id'];
 	$time_now=time();
 	$wpdb->update($wpdb->prefix.'pb_requests',array('closed'=>$time_now,'closed_comment'=>'closed by administrator.','active'=>2),array('id'=>$req_id));
 ?>
-<p><strong><?php _e('Request Closed.','menu-test'); ?></strong></p>
+<p><strong><?php _e(PB_ADMIN_REQ_CLOSED,'menu-test'); ?></strong></p>
 <?php } ?>
 
 <?php
-if($_POST['action']=="remove_ban"){
+if(isset($_POST['action']) && $_POST['action']=="remove_ban"){
 	$req_id=$_POST['pb_request_id'];
 	$ip=$_POST['pb_ip_address'];
 	$time_now=time();

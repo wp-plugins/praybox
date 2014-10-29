@@ -1,5 +1,5 @@
 <?php
-if($_POST['action']=="edit_request"){
+if(isset($_POST['action']) && $_POST['action']=="edit_request"){
 	$req_id=$_POST['pb_request_id'];
 	$request=$wpdb->get_row("SELECT first_name,last_name,email,title,body,ip_address,submitted FROM ".$wpdb->prefix."pb_requests WHERE id='$req_id'");
 	$first_name=stripslashes($request->first_name);

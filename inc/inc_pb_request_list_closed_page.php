@@ -8,7 +8,7 @@ global $wpdb;
 <h2 class="logo-title">PrayBox Closed Prayer Request List</h2>
 <div id="pbx-wrap">
 <?php
-if($_POST['action']=="remove_request"){
+if(isset($_POST['action']) && $_POST['action']=="remove_request"){
 	$req_id=$_POST['pb_request_id'];
 	$wpdb->query("DELETE FROM ".$wpdb->prefix."pb_requests WHERE id='$req_id'");
 	$wpdb->query("DELETE FROM ".$wpdb->prefix."pb_flags WHERE request_id='$req_id'");
@@ -17,7 +17,7 @@ if($_POST['action']=="remove_request"){
 <?php } ?>
 
 <?php
-if($_POST['action']=="reopen_request"){
+if(isset($_POST['action']) && $_POST['action']=="reopen_request"){
 	$req_id=$_POST['pb_request_id'];
 	$time_now=time();
 	$wpdb->update($wpdb->prefix.'pb_requests',array('closed'=>0,'closed_comment'=>'','active'=>1),array('id'=>$req_id));
@@ -26,7 +26,7 @@ if($_POST['action']=="reopen_request"){
 <?php } ?>
 
 <?php
-if($_POST['action']=="archive_request"){
+if(isset($_POST['action']) && $_POST['action']=="archive_request"){
 	$req_id=$_POST['pb_request_id'];
 	$wpdb->update($wpdb->prefix.'pb_requests',array('active'=>3),array('id'=>$req_id));
 ?>

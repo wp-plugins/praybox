@@ -1,3 +1,20 @@
+#praybox_wrapper, form.pbx-form, .pbx-formfield {width: 100%; margin: 0px; padding-bottom: 5px; box-sizing: border-box;}
+
+.pbx-formfield label {width: 30%; margin: 0; margin-right: 5%; box-sizing: border-box;}
+.pbx-formfield span {font-size: smaller;}
+.pbx-formfield input[type="text"] {width: 65%; margin: 0; box-sizing: border-box;}
+.pbx-formfield input[type="checkbox"] {width: auto; margin: 0; margin-right: 5%; box-sizing: border-box;}
+.pbx-formfield input[type="submit"] {float: right; width: auto; margin: 0; box-sizing: border-box;}
+.pbx-formfield textarea {width: 100%; margin: 0; box-sizing: border-box;}
+
+.pbx-formfield form.pbx-flag {float: left; width: auto; margin: 0; box-sizing: border-box;}
+.pbx-formfield form.pbx-prayed {float: right; width: auto; margin: 0; box-sizing: border-box;}
+
+
+table.pbx-req {width: 100%; margin-top: 5px; border-top: 1px dotted #ccc;}
+table.pbx-req th {font-weight: bold;}
+
+/*
 #praybox table.praybox {border: 0px !important; width: 100%;}
 #praybox table.praybox td {padding: 2px 8px !important;}
 #praybox tr.pb-titlerow {}
@@ -39,4 +56,4 @@
 #praybox .pagination a.active {background-color: #666666;}
 #praybox .pagination a:hover {background-color: #000000;}
 
-
+*/

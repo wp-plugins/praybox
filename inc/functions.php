@@ -49,16 +49,34 @@ function isDuplicate($fname,$lname,$email,$title,$ipaddy){
 	if($result==0){return "pass";}else{return "fail";}
 }
 
-function getRequestList($status){
-	//THIS FUNCTION IS FOR PENDING, ACTIVE, CLOSED, OR ARCHIVED PRAYER REQUESTS
-	if($status=="pending"){$querycond="WHERE active='0' AND closed='0'";}
-	if($status=="active"){$querycond="WHERE active='1'";}
-	if($status=="closed"){$querycond="WHERE active='2'";}
-	if($status=="archived"){$querycond="WHERE active='3'";}
-	
+function getRequestList($status){ //THIS FUNCTION IS FOR PENDING, ACTIVE, CLOSED, OR ARCHIVED PRAYER REQUESTS
 	global $wpdb;
+	switch($status){
+		case "pending":
+			$querycond="WHERE active=0 AND closed=0";
+			break;
+		case "active":
+			$querycond="WHERE active=1";
+			break;
+		case "closed":
+			$querycond="WHERE active=2";
+			break;
+		case "archived":
+			$querycond="WHERE active=3";
+			break;
+	}
+
 	$requests=$wpdb->get_results("SELECT id,first_name,last_name,email,title,body,ip_address,submitted FROM ".$wpdb->prefix."pb_requests $querycond ORDER BY submitted DESC");
-	
+//	return "SELECT id,first_name,last_name,email,title,body,ip_address,submitted FROM ".$wpdb->prefix."pb_requests $querycond ORDER BY submitted DESC";
+//	print_r($requests);
+	$output="";
+/*
+	foreach($requests as $req){
+		$output.="<p>".$req->id."</p>";
+	}
+	return $output;
+	exit;
+*/
 	if($requests){
 		foreach($requests as $req){
 			$req_id=$req->id;
@@ -71,30 +89,29 @@ function getRequestList($status){
 			$submitted=date("m-d-y",$req->submitted);
 			$num_prayers=howManyPrayers($req_id);
 			
-			$output="<tr><td>$req_id</td><td>$first_name $last_name<br />$email</td><td><strong>$title</strong><br />$body</td><td>$ip</td><td>$submitted</td><td>$num_prayers</td><td>";
+			$output.="<tr><td>$req_id</td><td>$first_name $last_name<br />$email</td><td><strong>$title</strong><br />$body</td><td>$ip</td><td>$submitted</td><td>$num_prayers</td><td>";
 	
-			if($status=="pending"){
-				$output.="<form method='post'><input type='hidden' name='action' value='approve_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Approve' /></form>";
-				$output.="<form method='post'><input type='hidden' name='action' value='edit_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Edit' /></form>";
-				$output.="<form method='post'><input type='hidden' name='action' value='remove_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Delete' /></form>";
-				$output.="<form method='post'><input type='hidden' name='action' value='remove_ban' /><input type='hidden' name='pb_ip_address' value='$ip' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Remove/Ban' /></form>";
+			switch($status){
+				case "pending":
+					$output.="<form method='post'><input type='hidden' name='action' value='approve_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='".PB_ADMIN_APPROVE."' /></form>";
+					$output.="<form method='post'><input type='hidden' name='action' value='edit_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='".PB_ADMIN_EDIT."' /></form>";
+					$output.="<form method='post'><input type='hidden' name='action' value='remove_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='".PB_ADMIN_DELETE."' /></form>";
+					$output.="<form method='post'><input type='hidden' name='action' value='remove_ban' /><input type='hidden' name='pb_ip_address' value='$ip' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='".PB_ADMIN_BAN."' /></form>";
+					break;
+				case "active":
+					$output.="<form method='post'><input type='hidden' name='action' value='remove_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='".PB_ADMIN_REMOVE."' /></form>";
+					$output.="<form method='post'><input type='hidden' name='action' value='close_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='".PB_ADMIN_CLOSE."' /></form>";
+					$output.="<form method='post'><input type='hidden' name='action' value='remove_ban' /><input type='hidden' name='pb_ip_address' value='$ip' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='".PB_ADMIN_BAN."' /></form>";
+					break;
+				case "closed":
+					$output.="<form method='post'><input type='hidden' name='action' value='remove_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='".PB_ADMIN_REMOVE."' /></form>";
+					$output.="<form method='post'><input type='hidden' name='action' value='reopen_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='".PB_ADMIN_REOPEN."' /></form>";
+					break;
 			}
-			if($status=="active"){
-				//$output.="<form method='post'><input type='hidden' name='action' value='edit_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Edit' /></form>";
-				$output.="<form method='post'><input type='hidden' name='action' value='remove_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Remove' /></form>";
-				$output.="<form method='post'><input type='hidden' name='action' value='close_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Close' /></form>";
-				$output.="<form method='post'><input type='hidden' name='action' value='remove_ban' /><input type='hidden' name='pb_ip_address' value='$ip' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Remove/Ban' /></form>";
-			}
-			if($status=="closed"){
-				//$output.="<form method='post'><input type='hidden' name='action' value='archive_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Archive' /></form>";
-				$output.="<form method='post'><input type='hidden' name='action' value='remove_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Remove' /></form>";
-				$output.="<form method='post'><input type='hidden' name='action' value='reopen_request' /><input type='hidden' name='pb_request_id' value='$req_id' /><input type='submit' class='button-secondary' value='Reopen' /></form>";
-			}
-			
 			$output.="</td></tr>";
 		}
 	}else{
-		$output="<tr><td colspan='7'>There are currently no $status prayer requests.</td></tr>";
+		$output="<tr><td colspan='7'>".PB_ADMIN_CURRENTLY." $status ".PB_ADMIN_PRAYER_REQ.".</td></tr>";
 	}
 	return $output;
 }
@@ -111,7 +128,7 @@ function displayRequests($page,$permalink){
 	if(get_option('pb_timeframe_display')==0){$time_condition="";}else{$timeframe=strtotime("-".get_option('pb_timeframe_display')." days");$time_condition="AND submitted>$timeframe";}
 	$listingsperpage=get_option('pb_page_display');
 	
-	if($listingsperpage!=0){$page_condition="LIMIT ".($page-1)*$listingsperpage.",".$page*$listingsperpage;}
+	$page_condition=($listingsperpage!=0)? "LIMIT ".($page-1)*$listingsperpage.",".$page*$listingsperpage : "";
 	
 	$this_display_qry_from="FROM ".$wpdb->prefix."pb_requests WHERE active='1' $time_condition ORDER BY submitted DESC $page_condition";
 	$total_display_qry_from="FROM ".$wpdb->prefix."pb_requests WHERE active='1' $time_condition";
@@ -120,14 +137,14 @@ function displayRequests($page,$permalink){
 	$num_requests=count($wpdb->get_results("SELECT id $this_display_qry_from"));
 	$total_num_requests=count($wpdb->get_results("SELECT id $total_display_qry_from"));
 		
-	$req_list_output.="<div id='praybox'>";
-	$req_list_output.="<div class='intro'>".get_option('pb_request_list_intro')."<div style='clear:both;'></div></div>";
+	$req_list_output="<div id='praybox_wrapper'>";
+	$req_list_output.="<p class='pbx-text'>".get_option('pb_request_list_intro')."</p>";
 	
 	if($listingsperpage!=0){
 		$total_pages=ceil($total_num_requests/$listingsperpage);
 		if($total_pages!=1){
 		$i=1;
-		$req_list_output.="<div class='pagination'>Page: ";
+		$req_list_output.="<div class='pagination'>".PB_ADMIN_PAGE.": ";
 		while($i<=$total_pages){
 			if($page==$i){$linkclass=" class='active'";}else{$linkclass="";}
 			$req_list_output.=" <a href='$link"."page=$i' $linkclass>$i</a>";
@@ -137,13 +154,13 @@ function displayRequests($page,$permalink){
 		}
 	}
 	
-	$req_list_output.="<table class='praybox'>";
-	$req_list_output.="<tr class='pb-titlerow'><td>Request Title</td><td># Prayers</td><td>Submitted On</td><td>&nbsp;</td>";
+	$req_list_output.="<table class='pbx-req'>";
+	$req_list_output.="<tr><th>".PB_REQ_TITLE."</th><th>".PB_REQ_NUM_PRAYERS."</th><th>".PB_REQ_SUBMITTED_ON."</th><th>&nbsp;</th>";
 	
 	foreach($active_requests as $a_req){
 		$req_id=$a_req->id;
 		$title=stripslashes($a_req->title);
-		if($a_req->title!=""){$title=stripslashes($a_req->title);}else{$title="<em>Untitled</em>";}
+		if($a_req->title!=""){$title=stripslashes($a_req->title);}else{$title="<em>".PB_REQ_UNTITLED."</em>";}
 		$body=stripslashes($a_req->body);
 		$submitted=date("F j, Y",$a_req->submitted);
 		$num_prayers=howManyPrayers($req_id);
@@ -152,8 +169,8 @@ function displayRequests($page,$permalink){
 		if($flag_thresh!=0){$flag_ratio=$num_flags/$flag_thresh;}else{$flag_ratio=0;}
 		
 		if($flag_ratio<1){
-		$req_list_output.="<tr class='pb-datarow'><td>$title</td><td>$num_prayers</td><td>$submitted</td><td class='input'>";
-		$req_list_output.="<a href='$link"."req=$req_id'>View Details</a>";
+		$req_list_output.="<tr><td>$title</td><td>$num_prayers</td><td>$submitted</td><td>";
+		$req_list_output.="<a href='$link"."req=$req_id'>".PB_REQ_DETAILS."</a>";
 		$req_list_output.="</td></tr>";
 		}
 	}
@@ -173,7 +190,7 @@ function displayRequests($page,$permalink){
 		}
 	}
 
-	$req_list_output.="<div style='clear:both;'></div></div>";
+	$req_list_output.="</div>";
 
 	return $req_list_output;
 }

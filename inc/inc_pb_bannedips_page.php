@@ -8,7 +8,7 @@ global $wpdb;
 <div id="pbx-wrap">
 
 <?php
-if($_POST['action']=="unban_ip"){
+if(isset($_POST['action']) && $_POST['action']=="unban_ip"){
 	$id=$_POST['banned_id'];
 	$wpdb->query("DELETE FROM ".$wpdb->prefix."pb_banned_ips WHERE id='$id'");
 ?>
@@ -27,7 +27,6 @@ if($bannedips){
 		$ip=$bip->ip_address;
 		$date=date("m-d-y",$bip->banned_date);
 		$reason=$bip->reason;
-		
 		
 		echo "<tr><td>$id</td><td>$ip</td><td>$date</td><td>$reason</td><td align='center'>";
 		echo "<form method='post'><input type='hidden' name='action' value='unban_ip' /><input type='hidden' name='banned_id' value='$id' /><input type='submit' class='button-secondary' value='Unban' /></form>";

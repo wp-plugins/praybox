@@ -8,7 +8,7 @@ global $wpdb;
 <div id="pbx-wrap">
 
 <?php
-if($_POST['action']=="remove_request"){
+if(isset($_POST['action']) && $_POST['action']=="remove_request"){
 	$req_id=$_POST['pb_request_id'];
 	$wpdb->query("DELETE FROM ".$wpdb->prefix."pb_requests WHERE id='$req_id'");
 	$wpdb->query("DELETE FROM ".$wpdb->prefix."pb_flags WHERE request_id='$req_id'");
@@ -17,7 +17,7 @@ if($_POST['action']=="remove_request"){
 <?php } ?>
 
 <?php
-if($_POST['action']=="clear_flags"){
+if(isset($_POST['action']) && $_POST['action']=="clear_flags"){
 	$req_id=$_POST['pb_request_id'];
 	$wpdb->query("DELETE FROM ".$wpdb->prefix."pb_flags WHERE request_id='$req_id'");
 ?>
@@ -25,7 +25,7 @@ if($_POST['action']=="clear_flags"){
 <?php } ?>
 
 <?php
-if($_POST['action']=="remove_ban"){
+if(isset($_POST['action']) && $_POST['action']=="remove_ban"){
 	$req_id=$_POST['pb_request_id'];
 	$ip=$_POST['pb_ip_address'];
 	$time_now=time();
