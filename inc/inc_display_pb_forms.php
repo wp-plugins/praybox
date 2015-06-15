@@ -131,12 +131,12 @@ if(isset($_POST['action']) && $_POST['action']=="update_request"){
 		$sub_form_output.="<form class='pbx-form' method='post'><input type='hidden' name='action' value='$sub_form_action' />$sub_form_req_id_input";
 		$sub_form_output.=($stat==0)? "<div class='pbx-formfield'><label>".PB_FORM_FIRST_NAME.":</label><input type='text' name='first_name' /></div>" : "";
 		$sub_form_output.=($stat==0)? "<div class='pbx-formfield'><label>".PB_FORM_LAST_NAME.":</label><input type='text' name='last_name' /></div>" : "";
-		$sub_form_output.="<div class='pbx-formfield'><input type='checkbox' name='anon' $anon /><span>".PB_FORM_ANONYMOUS."</span></div>";
+		$sub_form_output.="<div class='pbx-formfield'><label><input type='checkbox' name='anon' $anon /> ".PB_FORM_ANONYMOUS."</label></div>";
 		$sub_form_output.=($stat==0)? "<div class='pbx-formfield'><label>".PB_FORM_EMAIL.":</label><input type='text' name='email' /></div>" : "";
 		$sub_form_output.=($stat==0)? "<div class='pbx-formfield'><label>".PB_FORM_REQTITLE.":</label><input type='text' name='title' /></div>" : "";
 		$sub_form_output.=($stat==0)? "<div class='pbx-formfield'><label>".PB_FORM_REQ.":</label><textarea name='body'></textarea></div>" : "";
-		$sub_form_output.="<div class='pbx-formfield'><input type='checkbox' name='notify' $notify /><span>".PB_FORM_NOTIFY."</span></div>";
-		$sub_form_output.=($stat==1)? "<div class='pbx-formfield'><input type='checkbox' name='closed' /><span>".PB_FORM_EDIT_CLOSE."</span></div>" : "";
+		$sub_form_output.="<div class='pbx-formfield'><label><input type='checkbox' name='notify' $notify /> ".PB_FORM_NOTIFY."</label></div>";
+		$sub_form_output.=($stat==1)? "<div class='pbx-formfield'><label><input type='checkbox' name='closed' /> ".PB_FORM_EDIT_CLOSE."</label></div>" : "";
 		$sub_form_output.="<div class='pbx-formfield'><input type='submit' value='$sub_form_submit' /></div>";
 		$sub_form_output.="</form>";
 	}

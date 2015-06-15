@@ -1,3 +1,40 @@
+
+/* v1.4
+// PRAYBOX FOOTER FORMFIELD (USED FOR FLAGGING REQUESTS: ABUSE OR PRAYED FOR)
+*/
+.pbx-formfield-footer { margin-top: 10px; width: 100%; float: left; }
+.pbx-formfield-footer button { border-radius: 4px; }
+.pbx-formfield-footer button:first-child { float: left; }
+.pbx-formfield-footer button:last-child { float: right; }
+
+.pbx-modal-bg {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	display: none;
+}
+
+.pbx-modal {
+	width: 50%;
+	position: relative;
+	margin: 10% auto;
+	padding: 10px 20px 70px 20px;
+	border-radius: 10px;
+	background: #fff;
+	display: none;
+}
+
+.pbx-modal h3.pbx-title {
+	margin-top: 0px;
+}
+
+
+
+/* v1.3
 #praybox_wrapper, form.pbx-form, .pbx-formfield {width: 100%; margin: 0px; padding-bottom: 5px; box-sizing: border-box;}
 
 .pbx-formfield label {width: 30%; margin: 0; margin-right: 5%; box-sizing: border-box;}
@@ -13,8 +50,9 @@
 
 table.pbx-req {width: 100%; margin-top: 5px; border-top: 1px dotted #ccc;}
 table.pbx-req th {font-weight: bold;}
+*/
 
-/*
+/* PRE v1.3
 #praybox table.praybox {border: 0px !important; width: 100%;}
 #praybox table.praybox td {padding: 2px 8px !important;}
 #praybox tr.pb-titlerow {}

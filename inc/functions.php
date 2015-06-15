@@ -169,9 +169,19 @@ function displayRequests($page,$permalink){
 		if($flag_thresh!=0){$flag_ratio=$num_flags/$flag_thresh;}else{$flag_ratio=0;}
 		
 		if($flag_ratio<1){
-		$req_list_output.="<tr><td>$title</td><td>$num_prayers</td><td>$submitted</td><td>";
-		$req_list_output.="<a href='$link"."req=$req_id'>".PB_REQ_DETAILS."</a>";
+		$req_list_output.="<tr id='row_$req_id'><td>$title</td><td class='num-prayers'>$num_prayers</td><td>$submitted</td><td>";
+		$req_list_output.="<a href='#' req='$req_id'>".PB_REQ_DETAILS."</a>";
 		$req_list_output.="</td></tr>";
+
+		$req_modals[]="<div id='req_$req_id' class='pbx-modal' rel='$req_id'><h3 class='pbx-title'>$title</h3>"
+			."<div class='pbx-meta'><label>".PB_REQ_SUBMITTED_BY.":</label> $display_name</div>"
+			."<div class='pbx-body'><label>".PB_REQ_REQUEST.":</label> $body</div>"
+			."<div class='pbx-formfield pbx-formfield-footer'>"
+				."<button type='button' class='flag-btn flag-abuse'>".PB_FLAG_ABUSE."</button>"
+				."<button type='button' class='flag-btn flag-prayed'>".PB_FLAG_PRAYED."</button>"
+			."</div>"
+			."</div>";
+		
 		}
 	}
 	$req_list_output.="</table>";
@@ -191,8 +201,14 @@ function displayRequests($page,$permalink){
 	}
 
 	$req_list_output.="</div>";
+	
+	$req_list_modals="<div class='pbx-modal-bg'>"
+		.implode("\n",$req_modals)
+		."<div id='flag-response' class='pbx-modal'></div>"
+		."<div id='prayed-for' class='pbx-modal'>".PB_THANK_YOU_PRAYER."</div>"
+		."</div>";
 
-	return $req_list_output;
+	return $req_list_output.$req_list_modals;
 }
 
 function getManagementUrl($authcode){
@@ -211,3 +227,4 @@ function getManagementUrl($authcode){
 	return $management_url;
 
 }
+

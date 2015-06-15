@@ -3,7 +3,7 @@
 Plugin Name: PrayBox
 Plugin URI: http://www.praybox.com/
 Description: PrayBox is being used to manage prayer requests on WordPress websites all over the world.
-Version: 1.3
+Version: 1.4
 Author: Bryan Haddock
 Author URI: http://www.blazingtorch.com
 */
@@ -25,15 +25,8 @@ Author URI: http://www.blazingtorch.com
 */
 include("inc/pb_constants.php");
 include("inc/functions.php");
-
-function pb_includeAdminCSS() {
-	echo '<link type="text/css" rel="stylesheet" href="'.plugins_url().'/praybox/css/bt-praybox-admin.css" />' . "\n";
-}
-function pb_includePublicCSS() {
-	echo '<link type="text/css" rel="stylesheet" href="'.plugins_url().'/praybox/css/bt-praybox-sc.css" />' . "\n";
-}
-add_action('admin_head','pb_includeAdminCSS');
-add_action('wp_head','pb_includePublicCSS');
+include("inc/enqueue_functions.php");
+include("inc/public_pb_ajax.php");
 
 include("inc/inc_install_func.php");
 include("inc/inc_pb_crons.php");

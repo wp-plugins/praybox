@@ -3,8 +3,8 @@ Contributors: blazingtorch
 Donate link: http://www.praybox.com/
 Tags: church, pray, prayer, religion, ministry, prayer request, ministry tools
 Requires at least: 3.0
-Tested up to: 4.0
-Stable tag: 1.3
+Tested up to: 4.2
+Stable tag: 1.4
 
 PrayBox is being used to manage prayer requests on WordPress websites all over the world.
 
@@ -105,3 +105,9 @@ I respond to all support requests sent in through my PrayBox contact form at: [P
 * Began adding fundamental elements for multilingual improvements.
 * Fixed issue with "Active Request List" page not displaying all requests.
 * Updated shortcode output for better compatibility with more WP themes.
+
+= June 15, 2015 - 1.4 =
+* Updated for current version of WP
+* Made some modifications to Prayer Request form HTML
+* Added AJAX to Prayer requests list to keep from having to reload the request list
+
