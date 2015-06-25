@@ -111,3 +111,5 @@ I respond to all support requests sent in through my PrayBox contact form at: [P
 * Made some modifications to Prayer Request form HTML
 * Added AJAX to Prayer requests list to keep from having to reload the request list
 
+=June 25, 2015 - 1.4.1 =
+* Added version number to JS and CSS references so that these resources are updated if they have been previously cached...
